@@ -44,7 +44,8 @@ if( !class_exists( 'PPW_Register_Post_Types' ) ) {
 		 */
 		public function register_clients_post_type() {
 			$args = array(
-				'rewrite' => array( 'slug'=> 'clients' )
+				'description' => 'The Clients post type',
+				'rewrite'     => array( 'slug'=> 'clients' )
 			);
 			$ppw_register_clients_post_type = new PPW_Helper_Register_Post_Type( 'ppw_clients', 'Client', 'Clients', array(), $args );
 			
