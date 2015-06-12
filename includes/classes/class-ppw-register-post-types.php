@@ -24,6 +24,7 @@ if( !class_exists( 'PPW_Register_Post_Types' ) ) {
 		 * Register projects post type
 		 *
 		 * @since      0.0.1
+		 * @see        PPW_Helper_Register_Post_Type
 		 * @return     void
 		 */
 		public function register_projects_post_type() {
@@ -32,6 +33,21 @@ if( !class_exists( 'PPW_Register_Post_Types' ) ) {
 			);
 			$ppw_register_projects_post_type = new PPW_Helper_Register_Post_Type( 'ppw_projects', 'Project', 'Projects', array(), $args );
 		} // end register_projects_post_type
+
+		/**
+		 * Register clients post type
+		 *
+		 * @since      0.0.1
+		 * @see        PPW_Helper_Register_Post_Type
+		 * @return     void
+		 */
+		public function register_clients_post_type() {
+			$args = array(
+				'rewrite' => array( 'slug'=> 'clients' )
+			);
+			$ppw_register_clients_post_type = new PPW_Helper_Register_Post_Type( 'ppw_clients', 'Client', 'Clients', array(), $args );
+			
+		} // end register_clients_post_type
 
 	}
 } // end PPW_Register_Post_Types
