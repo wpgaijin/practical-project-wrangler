@@ -47,6 +47,7 @@ if( !class_exists( 'PPW_Register_Post_Types' ) ) {
 		public function register_clients_post_type() {
 			$args = array(
 				'description'     => 'The Clients post type',
+				'menu_icon'       => 'dashicons-groups',
 				'capability_type' => 'clients'
 				'rewrite'         => array( 'slug'=> 'clients' )
 			);
