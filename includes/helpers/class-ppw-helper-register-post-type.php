@@ -86,8 +86,10 @@ class PPW_Helper_Register_Post_Type {
         $defaults = array(
             'name'               => _x( $this->plural, 'post type general name' ),
             'singular_name'      => _x( $this->singular, 'post type singular name' ),
-            'add_new'            => __( 'Add New' ),
+            'menu_name'          => __( $this->plural ),
+            'name_admin_bar'     => __( $this->plural ),
             'all_items'          => __( 'All ' . $this->plural ),
+            'add_new'            => __( 'Add New' ),
             'add_new_item'       => __( 'Add New ' . $this->singular ),
             'edit_item'          => __( 'Edit ' . $this->singular ),
             'new_item'           => __( 'New ' . $this->singular ),
@@ -96,7 +98,7 @@ class PPW_Helper_Register_Post_Type {
             'not_found'          => __( 'No ' . $this->plural . ' Found' ),
             'not_found_in_trash' => __( 'No ' . $this->plural . ' Found in Trash' ),
             'parent_item_colon'  => __( 'Parent ' . $this->singular . ' Post:' ),
-            'menu_name'          => __( $this->plural ),
+            
         );
         $args   = $this->labels;
         $labels = wp_parse_args( $defaults, $args );
