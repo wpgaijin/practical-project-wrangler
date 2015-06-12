@@ -30,6 +30,7 @@ if( !class_exists( 'PPW_Register_Post_Types' ) ) {
 		public function register_projects_post_type() {
 			$args = array(
 				'description'     => 'The Projects post type',
+				'menu_icon'       => 'dashicons-analytics',
 				'capability_type' => 'projects',
 				'rewrite'         => array( 'slug'=> 'projects' )
 			);
