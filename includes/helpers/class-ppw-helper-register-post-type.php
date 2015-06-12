@@ -21,7 +21,7 @@ class PPW_Helper_Register_Post_Type {
      *
      * @var string
      */
-    public $singluar;
+    public $singular;
 
     /**
      * Plural Version of Post Type
@@ -54,7 +54,7 @@ class PPW_Helper_Register_Post_Type {
      */
     public function __construct( $post_type, $singular = '', $plural = '', $labels = array(), $args = array() ) {
         $this->post_type = $post_type;
-        $this->singluar  = $singluar;
+        $this->singular  = $singular;
         $this->plural    = $plural;
         $this->labels    = $labels;
         $this->args      = $args;
@@ -83,22 +83,20 @@ class PPW_Helper_Register_Post_Type {
      * @return array The modified array of post type labels
      */
     private function labels() {
-        $singular = ucwords( str_replace( '_', ' ', $this->post_type ) );
-        $plural   = ucwords( str_replace( '_', ' ', $this->plural ) );
         $defaults = array(
-            'name'               => _x( $plural, 'post type general name' ),
-            'singular_name'      => _x( $singular, 'post type singular name' ),
+            'name'               => _x( $this->plural, 'post type general name' ),
+            'singular_name'      => _x( $this->singular, 'post type singular name' ),
             'add_new'            => __( 'Add New' ),
-            'all_items'          => __( 'All ' . $plural ),
-            'add_new_item'       => __( 'Add New ' . $singular ),
-            'edit_item'          => __( 'Edit ' . $singular ),
-            'new_item'           => __( 'New ' . $singular ),
-            'view_item'          => __( 'View ' . $singular ),
-            'search_items'       => __( 'Search ' . $plural ),
-            'not_found'          => __( 'No ' . $plural . ' Found' ),
-            'not_found_in_trash' => __( 'No ' . $plural . ' Found in Trash' ),
-            'parent_item_colon'  => __( 'Parent ' . $singular . ' Post:' ),
-            'menu_name'          => __( $plural ),
+            'all_items'          => __( 'All ' . $this->plural ),
+            'add_new_item'       => __( 'Add New ' . $this->singular ),
+            'edit_item'          => __( 'Edit ' . $this->singular ),
+            'new_item'           => __( 'New ' . $this->singular ),
+            'view_item'          => __( 'View ' . $this->singular ),
+            'search_items'       => __( 'Search ' . $this->plural ),
+            'not_found'          => __( 'No ' . $this->plural . ' Found' ),
+            'not_found_in_trash' => __( 'No ' . $this->plural . ' Found in Trash' ),
+            'parent_item_colon'  => __( 'Parent ' . $this->singular . ' Post:' ),
+            'menu_name'          => __( $this->plural ),
         );
         $args   = $this->labels;
         $labels = wp_parse_args( $defaults, $args );

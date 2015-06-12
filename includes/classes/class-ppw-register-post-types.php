@@ -17,17 +17,16 @@ if( !class_exists( 'PPW_Register_Post_Types' ) ) {
 		 * @since 0.0.1
 		 */
 		public function __construct() {
-			add_action( 'init', array( $this, 'register_projects_post_type' ) );
+			$this->register_projects_post_type();
 		} // end __construct
 
 		/**
 		 * Register projects post type
 		 *
 		 * @since      0.0.1
-		 * @access     private
 		 * @return     void
 		 */
-		private function register_projects_post_type() {
+		public function register_projects_post_type() {
 			$args = array(
 				'rewrite' => array( 'slug'=> 'projects' )
 			);
