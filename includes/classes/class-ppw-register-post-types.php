@@ -29,7 +29,8 @@ if( !class_exists( 'PPW_Register_Post_Types' ) ) {
 		 */
 		public function register_projects_post_type() {
 			$args = array(
-				'rewrite' => array( 'slug'=> 'projects' )
+				'description' => 'The Projects post type',
+				'rewrite'     => array( 'slug'=> 'projects' )
 			);
 			$ppw_register_projects_post_type = new PPW_Helper_Register_Post_Type( 'ppw_projects', 'Project', 'Projects', array(), $args );
 		} // end register_projects_post_type
