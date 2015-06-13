@@ -18,6 +18,7 @@ if( !class_exists( 'PPW_Register_Post_Types' ) ) {
 		 */
 		public function __construct() {
 			$this->register_projects_post_type();
+			$this->register_clients_post_type();
 		} // end __construct
 
 		/**
