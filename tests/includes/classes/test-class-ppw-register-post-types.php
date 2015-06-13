@@ -34,4 +34,12 @@ class Test_PPW_Register_Post_Types extends WP_UnitTestCase {
 		$this->assertEquals( 'No Projects Found in Trash', $wp_post_types['ppw_projects']->labels->not_found_in_trash );
 		$this->assertEquals( 'Parent Project Post:', $wp_post_types['ppw_projects']->labels->parent_item_colon );
 	}
+
+	public function test_register_projects_post_type_args() {
+		global $wp_post_types;
+		$this->assertEquals( 'The Projects post type', $wp_post_types['ppw_projects']->description );
+        $this->assertEquals( 'dashicons-analytics', $wp_post_types['ppw_projects']->menu_icon );
+        $this->assertEquals( 'projects', $wp_post_types['ppw_projects']->capability_type );
+        $this->assertEquals( 'projects', $wp_post_types['ppw_projects']->rewrite['slug'] );
+	}
 }
