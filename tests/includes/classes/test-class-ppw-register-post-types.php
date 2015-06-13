@@ -60,4 +60,12 @@ class Test_PPW_Register_Post_Types extends WP_UnitTestCase {
 		$this->assertEquals( 'No Clients Found in Trash', $wp_post_types['ppw_clients']->labels->not_found_in_trash );
 		$this->assertEquals( 'Parent Client Post:', $wp_post_types['ppw_clients']->labels->parent_item_colon );
 	}
+
+	public function test_register_clients_post_type_args() {
+		global $wp_post_types;
+		$this->assertEquals( 'The Clients post type', $wp_post_types['ppw_clients']->description );
+        $this->assertEquals( 'dashicons-groups', $wp_post_types['ppw_clients']->menu_icon );
+        $this->assertEquals( 'clients', $wp_post_types['ppw_clients']->capability_type );
+        $this->assertEquals( 'clients', $wp_post_types['ppw_clients']->rewrite['slug'] );
+	}
 }
