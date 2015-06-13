@@ -42,4 +42,22 @@ class Test_PPW_Register_Post_Types extends WP_UnitTestCase {
         $this->assertEquals( 'projects', $wp_post_types['ppw_projects']->capability_type );
         $this->assertEquals( 'projects', $wp_post_types['ppw_projects']->rewrite['slug'] );
 	}
+
+	public function test_register_clients_post_type_labels() {
+		global $wp_post_types;
+		$this->assertEquals( 'Clients', $wp_post_types['ppw_clients']->labels->name );
+		$this->assertEquals( 'Client', $wp_post_types['ppw_clients']->labels->singular_name );
+		$this->assertEquals( 'Clients', $wp_post_types['ppw_clients']->labels->menu_name );
+		$this->assertEquals( 'Clients', $wp_post_types['ppw_clients']->labels->name_admin_bar );
+		$this->assertEquals( 'All Clients', $wp_post_types['ppw_clients']->labels->all_items );
+		$this->assertEquals( 'Add New', $wp_post_types['ppw_clients']->labels->add_new );
+		$this->assertEquals( 'Add New Client', $wp_post_types['ppw_clients']->labels->add_new_item );
+		$this->assertEquals( 'Edit Client', $wp_post_types['ppw_clients']->labels->edit_item );
+		$this->assertEquals( 'New Client', $wp_post_types['ppw_clients']->labels->new_item );
+		$this->assertEquals( 'View Client', $wp_post_types['ppw_clients']->labels->view_item );
+		$this->assertEquals( 'Search Clients', $wp_post_types['ppw_clients']->labels->search_items );
+		$this->assertEquals( 'No Clients Found', $wp_post_types['ppw_clients']->labels->not_found );
+		$this->assertEquals( 'No Clients Found in Trash', $wp_post_types['ppw_clients']->labels->not_found_in_trash );
+		$this->assertEquals( 'Parent Client Post:', $wp_post_types['ppw_clients']->labels->parent_item_colon );
+	}
 }
