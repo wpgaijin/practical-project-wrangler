@@ -18,7 +18,9 @@ if( !class_exists( 'PPW_Init' ) ) {
 		 * @since 0.0.1
 		 */
 		public function __construct() {
-			$this->register_post_types();
+			add_action( 'init', array( $this, 'register_post_types' ) );
+			add_action( 'init', array( $this, 'register_taxomonies' ) );
+			$this->add_user_roles();
 		} // end __construct
 
 		/**
@@ -28,9 +30,30 @@ if( !class_exists( 'PPW_Init' ) ) {
 		 * @see        PPW_Register_Post_Types
 		 * @return     void
 		 */
-		protected function register_post_types() {
+		public function register_post_types() {
 			$ppw_register_post_types = new PPW_Register_Post_Types();
 		} // end register_post_types
+
+		/**
+		 * Register Taxonomies
+		 *
+		 * @since      0.0.1
+		 * @see        PPW_Helper_Register_Taxonomies
+		 * @return     void
+		 */
+		public function register_taxomonies() {
+			$ppw_register_taxomonies = new PPW_Register_Taxonomies();
+		} // end register_taxomonies
+
+		/**
+		 * Add user roles
+		 *
+		 * @since      0.0.1
+		 * @return     void
+		 */
+		protected function add_user_roles() {
+			$ppw_add_user_roles = new PPW_Add_Roles();
+		} // end add_user_roles
 
 	}
 } // end PPW_Init

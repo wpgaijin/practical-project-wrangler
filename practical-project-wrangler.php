@@ -50,6 +50,7 @@ if( !class_exists( 'PPW' ) ) {
 				add_action( 'plugins_loaded', array( self::$instance, 'load_textdomain' ) );
 				self::$instance->includes();
 				self::$instance->init = new PPW_Init();
+				self::$instance->admin_init = new PPW_Admin_Init();
 			}
 		return self::$instance;
 		}
@@ -101,12 +102,29 @@ if( !class_exists( 'PPW' ) ) {
 		 */
 		private function includes() {
 			$includes_path = plugin_dir_path( __FILE__ ) . 'includes/';
+			// admin helpers
+			require_once PPW_PLUGIN_DIR . 'admin/helpers/class-ppw-custom-fields.php';
+			//require_once PPW_PLUGIN_DIR . 'admin/helpers/ppw-select-two-field.php';
+			// admin classes
+			require_once PPW_PLUGIN_DIR . 'admin/classes/class-ppw-tasks-meta-boxes.php';
+			require_once PPW_PLUGIN_DIR . 'admin/classes/class-ppw-projects-meta-boxes.php';
+			require_once PPW_PLUGIN_DIR . 'admin/classes/class-ppw-clients-meta-boxes.php';
+			require_once PPW_PLUGIN_DIR . 'admin/classes/class-ppw-load-admin-scripts.php';
+			require_once PPW_PLUGIN_DIR . 'admin/classes/class-ppw-load-admin-styles.php';
+			// admin
+			require_once PPW_PLUGIN_DIR . 'admin/class-ppw-admin-init.php';
 			// includes helpers
+			require_once PPW_PLUGIN_DIR . 'includes/helpers/class-ppw-helper-register-taxonomies.php';
 			require_once PPW_PLUGIN_DIR . 'includes/helpers/class-ppw-helper-register-post-type.php';
 			// includes classes
+			require_once PPW_PLUGIN_DIR . 'includes/classes/class-ppw-remove-post-type-support.php';
+			require_once PPW_PLUGIN_DIR . 'includes/classes/class-ppw-add-user-roles.php';
+			require_once PPW_PLUGIN_DIR . 'includes/classes/class-ppw-register-taxonomies.php';
 			require_once PPW_PLUGIN_DIR . 'includes/classes/class-ppw-register-post-types.php';
 			// includes
 			require_once PPW_PLUGIN_DIR . 'includes/class-ppw-init.php';
+			// activation
+			require_once PPW_PLUGIN_DIR . 'includes/class-ppw-install.php';
 		}
 
 		/**
