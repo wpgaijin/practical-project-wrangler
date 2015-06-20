@@ -5,7 +5,11 @@
 	'use strict';
 
 	 $(function() {
-	 	$('#ppw_clients_billing_different').click(function() {
+	 	var checkbox = $('#ppw_clients_billing_different');
+	 	if(checkbox.is(':checked')) {
+	        $('.ppw-hide').addClass('ppw-show');
+	    }
+	 	checkbox.click(function() {
 		    if($(this).is(':checked')) {
 		        $('.ppw-hide').addClass('ppw-show');
 		    } else {
