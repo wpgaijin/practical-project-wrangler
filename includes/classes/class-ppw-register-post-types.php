@@ -18,6 +18,7 @@ if( !class_exists( 'PPW_Register_Post_Types' ) ) {
 		 */
 		public function __construct() {
 			$this->register_projects_post_type();
+			$this->register_tasks_post_type();
 			$this->register_clients_post_type();
 		} // end __construct
 
@@ -32,11 +33,29 @@ if( !class_exists( 'PPW_Register_Post_Types' ) ) {
 			$args = array(
 				'description'     => 'The Projects post type',
 				'menu_icon'       => 'dashicons-analytics',
-				'capability_type' => 'projects',
+				'supports'        => array( 'title', 'comments', 'author' ),
 				'rewrite'         => array( 'slug'=> 'projects' )
 			);
 			$ppw_register_projects_post_type = new PPW_Helper_Register_Post_Type( 'ppw_projects', 'Project', 'Projects', array(), $args );
 		} // end register_projects_post_type
+
+		/**
+		 * Register tasks post type
+		 *
+		 * @since      0.0.1
+		 * @see        PPW_Helper_Register_Post_Type
+		 * @return     void
+		 */
+		public function register_tasks_post_type() {
+			$args = array(
+				'description'     => 'The Tasks post type',
+				'menu_icon'       => 'dashicons-hammer',
+				'supports'        => array( 'title', 'comments', 'author' ),
+				'rewrite'         => array( 'slug'=> 'tasks' )
+			);
+			$ppw_register_tasks_post_type = new PPW_Helper_Register_Post_Type( 'ppw_tasks', 'Task', 'Tasks', array(), $args );
+			
+		} // end register_clients_post_type
 
 		/**
 		 * Register clients post type
@@ -49,7 +68,7 @@ if( !class_exists( 'PPW_Register_Post_Types' ) ) {
 			$args = array(
 				'description'     => 'The Clients post type',
 				'menu_icon'       => 'dashicons-groups',
-				'capability_type' => 'clients',
+				'supports'        => array( 'title' ),
 				'rewrite'         => array( 'slug'=> 'clients' )
 			);
 			$ppw_register_clients_post_type = new PPW_Helper_Register_Post_Type( 'ppw_clients', 'Client', 'Clients', array(), $args );
