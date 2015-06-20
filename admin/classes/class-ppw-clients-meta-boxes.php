@@ -60,7 +60,7 @@ if( !class_exists( 'PPW_Clients_Meta_Boxes' ) ) {
 				'type'             => 'select',
 				'row_classes'      => 'ppw-third-field',
 				'show_option_none' => false,
-				'default'          => 'ohio',
+				'default'          => 'OH',
 				'options'          => array(
 					'AL'     => __( 'Alabama', PPW_TEXTDOMAIN ),
 					'AK'     => __( 'Alaska', PPW_TEXTDOMAIN ),
@@ -194,7 +194,7 @@ if( !class_exists( 'PPW_Clients_Meta_Boxes' ) ) {
 				'type'             => 'select',
 				'row_classes'      => 'ppw-third-field ppw-hide',
 				'show_option_none' => false,
-				'default'          => 'ohio',
+				'default'          => 'OH',
 				'options'          => array(
 					'AL'     => __( 'Alabama', PPW_TEXTDOMAIN ),
 					'AK'     => __( 'Alaska', PPW_TEXTDOMAIN ),
