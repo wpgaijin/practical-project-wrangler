@@ -7,8 +7,8 @@
  * @since      0.0.1
  */
 
-if( !class_exists( 'PPW_Clients_Meta_Boxes' ) ) {
-	class PPW_Clients_Meta_Boxes {
+if( !class_exists( 'PPW_Meta_Boxes_Clients' ) ) {
+	class PPW_Meta_Boxes_Clients {
 
 		/**
 		 * Initialize the class
@@ -403,11 +403,7 @@ if( !class_exists( 'PPW_Clients_Meta_Boxes' ) ) {
 				'name'       => __( 'Client Number', PPW_TEXTDOMAIN ),
 				'id'         => PPW_PREFIX . 'clients_number',
 				'type'       => 'text_small',
-				'default'    => array( $this, 'count_posts' ),
-				'attributes' => array(
-					'readonly'   => 'readonly',
-					'disabled'   => 'disabled',
-				)
+				'default'    => array( $this, 'count_posts' )
 			) );
 		} // end clients_id_number_meta_boxes
 
@@ -442,8 +438,14 @@ if( !class_exists( 'PPW_Clients_Meta_Boxes' ) ) {
 		 * @return     int the post total +1
 		 */
 		public function count_posts() {
+			global $post;
 			$count_posts = wp_count_posts('ppw_clients');
-			$published = $count_posts->publish+1;
+			$project_number_id = get_post_meta( $post->ID, PPW_PREFIX . 'clients_number', true );
+			if( !$project_number_id ) {
+				$published = $count_posts->publish+1;
+			} else {
+				$published = $project_number_id;
+			}
 			return $published;
 		} // end count_posts
 
@@ -466,4 +468,4 @@ if( !class_exists( 'PPW_Clients_Meta_Boxes' ) ) {
 		    return $title;
 		} // end title_placehlder
 	}
-} // end PPW_Clients_Meta_Boxes
+} // end PPW_Meta_Boxes_Clients

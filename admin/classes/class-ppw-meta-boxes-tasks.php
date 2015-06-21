@@ -7,8 +7,8 @@
  * @since      0.0.1
  */
 
-if( !class_exists( 'PPW_Tasks_Meta_Boxes' ) ) {
-	class PPW_Tasks_Meta_Boxes {
+if( !class_exists( 'PPW_Meta_Boxes_Tasks' ) ) {
+	class PPW_Meta_Boxes_Tasks {
 
 		/**
 		 * Initialize the class
@@ -232,4 +232,4 @@ if( !class_exists( 'PPW_Tasks_Meta_Boxes' ) ) {
 			}
 		} // end move_author_meta_box
 	}
-} // end PPW_Tasks_Meta_Boxes
+} // end PPW_Meta_Boxes_Tasks

@@ -7,8 +7,8 @@
  * @since      0.0.1
  */
 
-if( !class_exists( 'PPW_Projects_Meta_Boxes' ) ) {
-	class PPW_Projects_Meta_Boxes {
+if( !class_exists( 'PPW_Meta_Boxes_Projects' ) ) {
+	class PPW_Meta_Boxes_Projects {
 
 		/**
 		 * Initialize the class
@@ -77,9 +77,18 @@ if( !class_exists( 'PPW_Projects_Meta_Boxes' ) ) {
 				'cmb_styles'   => false
 			) );
 			$fields->add_field( array(
-				'name'       => __( 'Porject\'s Completion Date', PPW_TEXTDOMAIN ),
+				'name'       => __( 'Project\'s Start Date', PPW_TEXTDOMAIN ),
 				'desc'       => __( 'This field is required', PPW_TEXTDOMAIN ),
-				'id'         => PPW_PREFIX . 'projects_milestone_date',
+				'id'         => PPW_PREFIX . 'projects_date_start',
+				'type'       => 'text_date',
+				'attributes' => array(
+			        'required' => 'required',
+			    )
+			) );
+			$fields->add_field( array(
+				'name'       => __( 'Project\'s Completion Date', PPW_TEXTDOMAIN ),
+				'desc'       => __( 'This field is required', PPW_TEXTDOMAIN ),
+				'id'         => PPW_PREFIX . 'projects_date_end',
 				'type'       => 'text_date',
 				'attributes' => array(
 			        'required' => 'required',
@@ -185,4 +194,4 @@ if( !class_exists( 'PPW_Projects_Meta_Boxes' ) ) {
 			}
 		} // end move_author_meta_box
 	}
-} // end PPW_Projects_Meta_Boxes
+} // end PPW_Meta_Boxes_Projects
