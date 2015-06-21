@@ -59,9 +59,9 @@ if( !class_exists( 'PPW_Admin_Init' ) ) {
 		 * @return     void
 		 */
 		protected function custom_meta_boxes() {
-			$ppw_clients_meta_boxes = new PPW_Clients_Meta_Boxes();
-			$ppw_projects_meta_boxes = new PPW_Projects_Meta_Boxes();
-			$ppw_tasks_meta_boxes = new PPW_Tasks_Meta_Boxes();
+			$ppw_clients_meta_boxes = new PPW_Meta_Boxes_Clients();
+			$ppw_projects_meta_boxes = new PPW_Meta_Boxes_Projects();
+			$ppw_tasks_meta_boxes = new PPW_Meta_Boxes_Tasks();
 		} // end custom_meta_boxes
 
 	}

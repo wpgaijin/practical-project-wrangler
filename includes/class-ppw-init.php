@@ -21,6 +21,7 @@ if( !class_exists( 'PPW_Init' ) ) {
 			add_action( 'init', array( $this, 'register_post_types' ) );
 			add_action( 'init', array( $this, 'register_taxomonies' ) );
 			$this->add_user_roles();
+			//$this->include_shortcodes();
 		} // end __construct
 
 		/**
@@ -53,6 +54,16 @@ if( !class_exists( 'PPW_Init' ) ) {
 		 */
 		protected function add_user_roles() {
 			$ppw_add_user_roles = new PPW_Add_Roles();
+		} // end add_user_roles
+
+		/**
+		 * Include shorcodes
+		 *
+		 * @since      0.0.1
+		 * @return     void
+		 */
+		protected function include_shortcodes() {
+			$ppw_shortcode_client_form = new PPW_Shortcode_Client_Form();
 		} // end add_user_roles
 
 	}

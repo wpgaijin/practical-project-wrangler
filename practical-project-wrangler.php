@@ -106,9 +106,9 @@ if( !class_exists( 'PPW' ) ) {
 			require_once PPW_PLUGIN_DIR . 'admin/helpers/class-ppw-custom-fields.php';
 			//require_once PPW_PLUGIN_DIR . 'admin/helpers/ppw-select-two-field.php';
 			// admin classes
-			require_once PPW_PLUGIN_DIR . 'admin/classes/class-ppw-tasks-meta-boxes.php';
-			require_once PPW_PLUGIN_DIR . 'admin/classes/class-ppw-projects-meta-boxes.php';
-			require_once PPW_PLUGIN_DIR . 'admin/classes/class-ppw-clients-meta-boxes.php';
+			require_once PPW_PLUGIN_DIR . 'admin/classes/class-ppw-meta-boxes-tasks.php';
+			require_once PPW_PLUGIN_DIR . 'admin/classes/class-ppw-meta-boxes-projects.php';
+			require_once PPW_PLUGIN_DIR . 'admin/classes/class-ppw-meta-boxes-clients.php';
 			require_once PPW_PLUGIN_DIR . 'admin/classes/class-ppw-load-admin-scripts.php';
 			require_once PPW_PLUGIN_DIR . 'admin/classes/class-ppw-load-admin-styles.php';
 			// admin
@@ -116,6 +116,8 @@ if( !class_exists( 'PPW' ) ) {
 			// includes helpers
 			require_once PPW_PLUGIN_DIR . 'includes/helpers/class-ppw-helper-register-taxonomies.php';
 			require_once PPW_PLUGIN_DIR . 'includes/helpers/class-ppw-helper-register-post-type.php';
+			// shortcodes
+			require_once PPW_PLUGIN_DIR . 'includes/shortcodes/ppw-shortcode-client-form.php';
 			// includes classes
 			require_once PPW_PLUGIN_DIR . 'includes/classes/class-ppw-remove-post-type-support.php';
 			require_once PPW_PLUGIN_DIR . 'includes/classes/class-ppw-add-user-roles.php';
