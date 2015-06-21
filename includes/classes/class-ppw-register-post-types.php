@@ -20,6 +20,7 @@ if( !class_exists( 'PPW_Register_Post_Types' ) ) {
 			$this->register_projects_post_type();
 			$this->register_tasks_post_type();
 			$this->register_clients_post_type();
+			$this->register_activity_post_type();
 		} // end __construct
 
 		/**
@@ -74,6 +75,24 @@ if( !class_exists( 'PPW_Register_Post_Types' ) ) {
 			$ppw_register_clients_post_type = new PPW_Helper_Register_Post_Type( 'ppw_clients', 'Client', 'Clients', array(), $args );
 			
 		} // end register_clients_post_type
+
+		/**
+		 * Register activity post type
+		 *
+		 * @since      0.0.1
+		 * @see        PPW_Helper_Register_Post_Type
+		 * @return     void
+		 */
+		public function register_activity_post_type() {
+			$args = array(
+				'description'     => 'The activity log',
+				'menu_icon'       => 'dashicons-index-card',
+				'supports'        => array( 'title', 'editor' ),
+				'rewrite'         => array( 'slug'=> 'activity' )
+			);
+			$ppw_register_activity_post_type = new PPW_Helper_Register_Post_Type( 'ppw_activity', 'Acivity', 'Activity', array(), $args );
+			
+		} // end register_activity_post_type
 
 	}
 } // end PPW_Register_Post_Types

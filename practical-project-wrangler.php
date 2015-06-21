@@ -104,8 +104,8 @@ if( !class_exists( 'PPW' ) ) {
 			$includes_path = plugin_dir_path( __FILE__ ) . 'includes/';
 			// admin helpers
 			require_once PPW_PLUGIN_DIR . 'admin/helpers/class-ppw-custom-fields.php';
-			//require_once PPW_PLUGIN_DIR . 'admin/helpers/ppw-select-two-field.php';
 			// admin classes
+			require_once PPW_PLUGIN_DIR . 'admin/classes/class-ppw-meta-boxes-activity.php';
 			require_once PPW_PLUGIN_DIR . 'admin/classes/class-ppw-meta-boxes-tasks.php';
 			require_once PPW_PLUGIN_DIR . 'admin/classes/class-ppw-meta-boxes-projects.php';
 			require_once PPW_PLUGIN_DIR . 'admin/classes/class-ppw-meta-boxes-clients.php';
@@ -119,6 +119,7 @@ if( !class_exists( 'PPW' ) ) {
 			// shortcodes
 			require_once PPW_PLUGIN_DIR . 'includes/shortcodes/ppw-shortcode-client-form.php';
 			// includes classes
+			require_once PPW_PLUGIN_DIR . 'includes/classes/class-ppw-activity-log.php';
 			require_once PPW_PLUGIN_DIR . 'includes/classes/class-ppw-remove-post-type-support.php';
 			require_once PPW_PLUGIN_DIR . 'includes/classes/class-ppw-add-user-roles.php';
 			require_once PPW_PLUGIN_DIR . 'includes/classes/class-ppw-register-taxonomies.php';
