@@ -294,7 +294,7 @@ if( !class_exists( 'PPW_Meta_Boxes_Clients' ) ) {
 				'cmb_styles'   => false
 			) );
 			$fields->add_field( array(
-				'name'        => __( 'Conact Name', PPW_TEXTDOMAIN ),
+				'name'        => __( 'Contact Name', PPW_TEXTDOMAIN ),
 				'id'          => PPW_PREFIX . 'clients_primary_contact_name',
 				'type'        => 'text',
 				'row_classes' => 'ppw-third-field ppw-padding-right'

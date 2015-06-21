@@ -221,7 +221,7 @@ if( ! function_exists( ' ppw_clients_frontend_form_register ') ) {
 			'type'        => 'text_email',
 		) );
 		$fields->add_field( array(
-			'name'        => __( 'Conact Name', PPW_TEXTDOMAIN ),
+			'name'        => __( 'Contact Name', PPW_TEXTDOMAIN ),
 			'id'          => PPW_PREFIX . 'submitted_clients_primary_contact_name',
 			'type'        => 'text',
 		) );
