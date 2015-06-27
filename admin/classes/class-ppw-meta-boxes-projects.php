@@ -18,12 +18,67 @@ if( !class_exists( 'PPW_Meta_Boxes_Projects' ) ) {
 		public function __construct() {
 			add_action( 'cmb2_init', array( $this, 'projects_category_meta_boxes' ) );
 			add_action( 'cmb2_init', array( $this, 'projects_milestone_meta_boxes' ) );
+			add_action( 'cmb2_init', array( $this, 'projects_client_meta_boxes' ) );
+			add_action( 'cmb2_init', array( $this, 'projects_assign_meta_boxes' ) );
 			add_action( 'cmb2_init', array( $this, 'projects_description_meta_boxes' ) );
 			add_action( 'cmb2_init', array( $this, 'projects_files_meta_boxes' ) );
-			add_action( 'enter_title_here', array( $this, 'title_placehlder' ) );
 			add_action( 'admin_menu', array( $this, 'remove_meta_boxes' ) );
 			add_action( 'post_submitbox_misc_actions', array( $this, 'move_author_meta_box' ) );
 		} // end __construct
+
+		/**
+		 * Taske assign meta boxes
+		 *
+		 * @since      0.0.1
+		 * @return     void
+		 */
+		public function projects_assign_meta_boxes() {
+			$fields = new_cmb2_box( array(
+				'id'           => PPW_PREFIX . '_projects_assign',
+				'title'        => __( 'Assign Project', PPW_TEXTDOMAIN ),
+				'object_types' => array( 'ppw_projects' ),
+				'context'      => 'side',
+				'priority'     => 'default',
+				'show_names'   => true,
+				'cmb_styles'   => false
+			) );
+			$fields->add_field( array(
+				'name'        => 'Assign to:',
+				'id'          => PPW_PREFIX . '_assigned',
+				'type'        => 'multiselect',
+				'row_classes' => 'select-default',
+				'options'     => PPW_Get_Manager_Users::init(),
+			) );
+		} // end projects_assign_meta_boxes
+
+		/**
+		 * Project client meta boxes
+		 *
+		 * @since      0.0.1
+		 * @return     void
+		 */
+		public function projects_client_meta_boxes() {
+			$fields = new_cmb2_box( array(
+				'id'           => PPW_PREFIX . '_projects_clients',
+				'title'        => __( 'Client', PPW_TEXTDOMAIN ),
+				'object_types' => array( 'ppw_projects' ),
+				'context'      => 'side',
+				'priority'     => 'default',
+				'show_names'   => false,
+				'cmb_styles'   => false
+			) );
+			$fields->add_field( array(
+				'name'             => __( 'Assign Client', PPW_TEXTDOMAIN ),
+				'id'               => PPW_PREFIX . '_projects_client',
+				'type'             => 'search',
+				'show_option_none' => true,
+				'default'          => ' ',
+				'options'          => PPW_Helper_List_Clients::init(),
+				'attributes' => array(
+			        'required' => 'required',
+			    )
+			) );
+		} // end projects_client_meta_boxes
 
 		/**
 		 * Project category meta boxes
@@ -33,7 +88,7 @@ if( !class_exists( 'PPW_Meta_Boxes_Projects' ) ) {
 		 */
 		public function projects_category_meta_boxes() {
 			$fields = new_cmb2_box( array(
-				'id'           => PPW_PREFIX . 'projects_categories',
+				'id'           => PPW_PREFIX . '_projects_categories',
 				'title'        => __( 'Project Categories', PPW_TEXTDOMAIN ),
 				'object_types' => array( 'ppw_projects' ),
 				'context'      => 'normal',
@@ -43,20 +98,19 @@ if( !class_exists( 'PPW_Meta_Boxes_Projects' ) ) {
 			) );
 			$fields->add_field( array(
 				'name'             => __( 'Category', PPW_TEXTDOMAIN ),
-				'id'               => PPW_PREFIX . 'projects_category',
-				'taxonomy'         => 'ppw_projects_categories',
-				'type'             => 'taxonomy_select',
+				'id'               => PPW_PREFIX . '_projects_category',
+				'type'             => 'multiselect',
 				'show_option_none' => true,
-				'row_classes'      => ''
+				'row_classes'      => 'ppw-half-field ppw-padding-right',
+				'options'          => $this->get_terms( 'ppw_projects_categories' )
 			) );
 			$fields->add_field( array(
 				'name'              => __( 'Sub Category', PPW_TEXTDOMAIN ),
-				'id'                => PPW_PREFIX . 'projects_sub_category',
-				'taxonomy'          => 'ppw_projects_sub_categories',
-				'type'              => 'taxonomy_multicheck',
+				'id'                => PPW_PREFIX . '_projects_sub_category',
+				'type'              => 'multiselect',
 				'show_option_none'  => true,
-				'row_classes'       => 'ppw-hide',
-				'select_all_button' => false
+				'row_classes'       => 'ppw-half-field ppw-padding-right',
+				'options'           => $this->get_terms( 'ppw_projects_sub_categories' )
 			) );
 		} // end projects_category_meta_boxes
 
@@ -68,7 +122,7 @@ if( !class_exists( 'PPW_Meta_Boxes_Projects' ) ) {
 		 */
 		public function projects_milestone_meta_boxes() {
 			$fields = new_cmb2_box( array(
-				'id'           => PPW_PREFIX . 'projects_milestone',
+				'id'           => PPW_PREFIX . '_projects_milestone',
 				'title'        => __( 'Project Milestone', PPW_TEXTDOMAIN ),
 				'object_types' => array( 'ppw_projects' ),
 				'context'      => 'normal',
@@ -79,7 +133,7 @@ if( !class_exists( 'PPW_Meta_Boxes_Projects' ) ) {
 			$fields->add_field( array(
 				'name'       => __( 'Project\'s Start Date', PPW_TEXTDOMAIN ),
 				'desc'       => __( 'This field is required', PPW_TEXTDOMAIN ),
-				'id'         => PPW_PREFIX . 'projects_date_start',
+				'id'         => PPW_PREFIX . '_projects_date_start',
 				'type'       => 'text_date',
 				'attributes' => array(
 			        'required' => 'required',
@@ -88,7 +142,7 @@ if( !class_exists( 'PPW_Meta_Boxes_Projects' ) ) {
 			$fields->add_field( array(
 				'name'       => __( 'Project\'s Completion Date', PPW_TEXTDOMAIN ),
 				'desc'       => __( 'This field is required', PPW_TEXTDOMAIN ),
-				'id'         => PPW_PREFIX . 'projects_date_end',
+				'id'         => PPW_PREFIX . '_projects_date_end',
 				'type'       => 'text_date',
 				'attributes' => array(
 			        'required' => 'required',
@@ -104,7 +158,7 @@ if( !class_exists( 'PPW_Meta_Boxes_Projects' ) ) {
 		 */
 		public function projects_description_meta_boxes() {
 			$fields = new_cmb2_box( array(
-				'id'           => PPW_PREFIX . 'projects_description',
+				'id'           => PPW_PREFIX . '_projects_description',
 				'title'        => __( 'Project Description', PPW_TEXTDOMAIN ),
 				'object_types' => array( 'ppw_projects' ),
 				'context'      => 'normal',
@@ -114,9 +168,13 @@ if( !class_exists( 'PPW_Meta_Boxes_Projects' ) ) {
 			) );
 			$fields->add_field( array(
 				'name'       => __( 'Porject\'s Description', PPW_TEXTDOMAIN ),
-				'id'         => PPW_PREFIX . 'projects_desc',
+				'id'         => PPW_PREFIX . '_projects_desc',
 				'type'       => 'wysiwyg',
-				'show_names' => false
+				'show_names' => false,
+				'options'    => array(
+						'wpautop'       => true,
+						'textarea_rows' => get_option('default_post_edit_rows', 10),
+					)
 			) );
 		} // end projects_description_meta_boxes
 
@@ -128,7 +186,7 @@ if( !class_exists( 'PPW_Meta_Boxes_Projects' ) ) {
 		 */
 		public function projects_files_meta_boxes() {
 			$fields = new_cmb2_box( array(
-				'id'           => PPW_PREFIX . 'projects_files',
+				'id'           => PPW_PREFIX . '_projects_files',
 				'title'        => __( 'Project Files', PPW_TEXTDOMAIN ),
 				'object_types' => array( 'ppw_projects' ),
 				'context'      => 'normal',
@@ -138,29 +196,26 @@ if( !class_exists( 'PPW_Meta_Boxes_Projects' ) ) {
 			) );
 			$fields->add_field( array(
 				'name'         => __( 'File', PPW_TEXTDOMAIN ),
-				'id'           => PPW_PREFIX . 'projects_file',
+				'id'           => PPW_PREFIX . '_projects_file',
 				'type'         => 'file_list'
 			) );
 		} // end projects_files_meta_boxes
 
 		/**
-		 * Title placeholder
-		 *
-		 * Chage the default title placeholder
+		 * Get Terms
 		 *
 		 * @since      0.0.1
-		 * @param      string $title the placeholder text
-		 * @return     strinf the new placeholder text
+		 * @param      string $terms the taxominy term
+		 * @return     array the array of term names and IDs
 		 */
-		public function title_placehlder() {
-			$screen = get_current_screen();
-		    if ( 'ppw_projects' == $screen->post_type ){
-		        $title = 'Projects\'s Name';
-		    } else {
-		    	$title = 'Enter title here';
-		    }
-		    return $title;
-		} // end title_placehlder
+		public function get_terms( $terms ) {
+			$terms = get_terms( $terms, array( 'hide_empty' => false ) );
+			$array = array();
+			foreach( $terms as $term ) {
+				$array[$term->term_id] = $term->name;
+			}
+			return $array;
+		} // end get_terms
 
 		/**
 		 * Remove meta boxes

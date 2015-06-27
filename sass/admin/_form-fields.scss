@@ -1,0 +1,125 @@
+/*---------------------------------------------------------
+ * Form Fields
+---------------------------------------------------------*/
+.cmb2-metabox,
+.cmb2-id-ppw-clients-billing-different,
+.cmb-repeatable-grouping,
+.cmb-nested,
+.cmb-remove-field-row,
+.cmb-remove-row {
+	overflow: hidden;
+}
+.cmb-nested,
+.cmb-remove-field-row,
+.cmb-remove-row {
+	clear: both;
+}
+.cmb-th {
+	margin-bottom: 0.5em;
+	margin-top: 0.5em;
+}
+.cmb-remove-field-row {
+	margin-top: 6em;
+}
+.ppw-padding-right {
+	padding-right: 2%;
+}
+.cmb2-id-ppw-clients-billing-different .cmb-th,
+.cmb2-id-ppw-clients-status .cmb-th {
+	margin-right: 0.5em;
+}
+.cmb2-id-ppw-clients-billing-different .cmb-td,
+.cmb2-id-ppw-clients-status .cmb-td {
+	position: relative;
+}
+.cmb2-id-ppw-clients-billing-different .cmb-td,
+.cmb2-id-ppw-clients-status .cmb-td  {
+	top: 10px;
+}
+.ppw-full-field input,
+.ppw-half-field input,
+.ppw-half-field select,
+.ppw-third-field input,
+.ppw-third-field select {
+	width: 99%;
+}
+.ppw-full-field input[type="checkbox"],
+.ppw-half-field input[type="checkbox"],
+.ppw-third-field input[type="checkbox"] {
+  width: auto;
+}
+.ppw-half-field {
+	width: 100%;
+}
+.cmb2-id-ppw-clients-billing-different .cmb-th,
+.cmb2-id-ppw-clients-billing-different .cmb-td,
+.cmb2-id-ppw-clients-status .cmb-th,
+.cmb2-id-ppw-clients-status .cmb-td,
+.cmb-remove-group-row,
+.cmb-group-title {
+	float: left;
+}
+.cmb-remove-group-row,
+.cmb-add-row {
+	float: right;
+}
+.ppw-half-field input,
+.ppw-half-field select,
+.ppw-third-field input,
+.ppw-third-field select,
+.ppw-half-field {
+	float: none;
+}
+@media screen and (min-width: 960px) {
+	.ppw-half-field{
+		width: 48%;
+		float: left;
+	}
+	.ppw-third-field{
+		width: 32%;
+		float: left;
+	}
+	.ppw-padding-right {
+		padding-right: 2%;
+	}
+}
+.ppw-hide,
+.cmb-repeatable-grouping .cmbhandle,
+#ppw_clients_additional_information .handlediv,
+#ppw_clients_additional_information .cmb-th,
+#ppw_clients_id_numbers .handlediv,
+#ppw_clients_id_numbers .hndle {
+	display: none;
+}
+.ppw-show {
+	display: block;
+}
+#ppw_clients_additional_information {
+	border: none;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	background: transparent;
+}
+.select2-container {
+  width: 99% !important;
+}
+.cmb2-id-ppw-projects-sub-category .cmb-td li {
+	float: left;
+	margin-right: 0.5em;
+}
+.select2-container .select2-selection--multiple .select2-selection__rendered {
+  display: block !important;
+}
+.select2-selection__choice {
+	margin-bottom: 0;
+}
+.select2-container--default .select2-search--inline .select2-search__field {
+	padding: 0;
+}
+#cmb2-metabox-ppwoption_metabox {
+	.cmb-th,
+	.cmb-td {
+		margin-top: 0.5em;
+		padding: 0px 10px
+	}
+}

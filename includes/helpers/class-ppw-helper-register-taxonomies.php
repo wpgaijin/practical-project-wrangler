@@ -15,42 +15,42 @@ if( !class_exists( 'PPW_Helper_Register_Taxonomies' ) ) {
          *
          * @var string
          */
-        public $post_type;
+        protected $post_type;
 
         /**
          * Singular Version of Post Type
          *
          * @var string
          */
-        public $singular;
+        protected $singular;
 
         /**
          * The taxonomy name
          *
          * @var string
          */
-        public $taxonomy;
+        protected $taxonomy;
 
         /**
          * The plural version of the taxonomy
          *
          * @var string
          */
-        public $plural;
+        protected $plural;
 
         /**
          * The labels array
          *
          * @var array
          */
-        public $lables;
+        protected $lables;
 
         /**
          * The arguments array
          *
          * @var array
          */
-        public $args;
+        protected $args;
         
         /**
          * Initialize the class

@@ -14,35 +14,35 @@ if( !class_exists( 'PPW_Helper_Register_Post_Type' ) ) {
          *
          * @var string
          */
-        public $post_type;
+        protected $post_type;
 
         /**
          * Singular Version of Post Type
          *
          * @var string
          */
-        public $singular;
+        protected $singular;
 
         /**
          * Plural Version of Post Type
          *
          * @var string
          */
-        public $plural;
+        protected $plural;
 
         /**
          * The labels array
          *
          * @var array
          */
-        public $labels;
+        protected $labels;
 
         /**
          * The post type arguments
          *
          * @var array
          */
-        public $args;
+        protected $args;
 
         /**
          * Initialize the class and set its properties.
@@ -91,7 +91,7 @@ if( !class_exists( 'PPW_Helper_Register_Post_Type' ) ) {
                 
             );
             $args   = $this->labels;
-            $labels = wp_parse_args( $defaults, $args );
+            $labels = wp_parse_args( $args, $defaults );
             return $labels;
         } // end labels
 

@@ -69,7 +69,7 @@ if( !class_exists( 'PPW' ) ) {
 			}
 			// Prefix
 			if ( ! defined( 'PPW_PREFIX' ) ) {
-				define( 'PPW_PREFIX', 'ppw_' );
+				define( 'PPW_PREFIX', 'ppw' );
 			}
 			// Textdomain
 			if ( ! defined( 'PPW_TEXTDOMAIN' ) ) {
@@ -103,9 +103,10 @@ if( !class_exists( 'PPW' ) ) {
 		private function includes() {
 			$includes_path = plugin_dir_path( __FILE__ ) . 'includes/';
 			// admin helpers
-			require_once PPW_PLUGIN_DIR . 'admin/helpers/class-ppw-custom-fields.php';
+			require_once PPW_PLUGIN_DIR . 'admin/helpers/class-ppw-admin-helper-custom-fields.php';
 			// admin classes
-			require_once PPW_PLUGIN_DIR . 'admin/classes/class-ppw-meta-boxes-activity.php';
+			require_once PPW_PLUGIN_DIR . 'admin/classes/class-ppw-options.php';
+			require_once PPW_PLUGIN_DIR . 'admin/classes/class-ppw-meta-boxes-messages.php';
 			require_once PPW_PLUGIN_DIR . 'admin/classes/class-ppw-meta-boxes-tasks.php';
 			require_once PPW_PLUGIN_DIR . 'admin/classes/class-ppw-meta-boxes-projects.php';
 			require_once PPW_PLUGIN_DIR . 'admin/classes/class-ppw-meta-boxes-clients.php';
@@ -114,12 +115,22 @@ if( !class_exists( 'PPW' ) ) {
 			// admin
 			require_once PPW_PLUGIN_DIR . 'admin/class-ppw-admin-init.php';
 			// includes helpers
+			require_once PPW_PLUGIN_DIR . 'includes/helpers/class-ppw-helper-get-product-categories.php';
+			require_once PPW_PLUGIN_DIR . 'includes/helpers/class-ppw-helper-get-projects.php';
+			require_once PPW_PLUGIN_DIR . 'includes/helpers/class-ppw-helper-get-manager-users.php';
+			require_once PPW_PLUGIN_DIR . 'includes/helpers/class-ppw-helper-list-clients.php';
 			require_once PPW_PLUGIN_DIR . 'includes/helpers/class-ppw-helper-register-taxonomies.php';
 			require_once PPW_PLUGIN_DIR . 'includes/helpers/class-ppw-helper-register-post-type.php';
 			// shortcodes
-			require_once PPW_PLUGIN_DIR . 'includes/shortcodes/ppw-shortcode-client-form.php';
+			require_once PPW_PLUGIN_DIR . 'includes/shortcodes/class-ppw-shortcode-display-projects.php';
+			require_once PPW_PLUGIN_DIR . 'includes/shortcodes/class-ppw-shortcode-task-form.php';
+			require_once PPW_PLUGIN_DIR . 'includes/shortcodes/class-ppw-shortcode-project-form.php';
+			require_once PPW_PLUGIN_DIR . 'includes/shortcodes/class-ppw-shortcode-client-form.php';
 			// includes classes
-			require_once PPW_PLUGIN_DIR . 'includes/classes/class-ppw-activity-log.php';
+			require_once PPW_PLUGIN_DIR . 'includes/classes/class-ppw-pagination.php';
+			require_once PPW_PLUGIN_DIR . 'includes/classes/class-ppw-load-styles.php';
+			require_once PPW_PLUGIN_DIR . 'includes/classes/class-ppw-load-scripts.php';
+			require_once PPW_PLUGIN_DIR . 'includes/classes/class-ppw-comment-editor.php';
 			require_once PPW_PLUGIN_DIR . 'includes/classes/class-ppw-remove-post-type-support.php';
 			require_once PPW_PLUGIN_DIR . 'includes/classes/class-ppw-add-user-roles.php';
 			require_once PPW_PLUGIN_DIR . 'includes/classes/class-ppw-register-taxonomies.php';

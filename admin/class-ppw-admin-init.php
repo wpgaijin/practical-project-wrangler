@@ -20,6 +20,7 @@ if( !class_exists( 'PPW_Admin_Init' ) ) {
 			$this->load_admin_scripts();
 			$this->custom_fields();
 			$this->custom_meta_boxes();
+			$this->plugin_options();
 		} // end __construct
 
 		/**
@@ -62,7 +63,22 @@ if( !class_exists( 'PPW_Admin_Init' ) ) {
 			$ppw_clients_meta_boxes = new PPW_Meta_Boxes_Clients();
 			$ppw_projects_meta_boxes = new PPW_Meta_Boxes_Projects();
 			$ppw_tasks_meta_boxes = new PPW_Meta_Boxes_Tasks();
-			$ppw_activity_meta_boxes = new PPW_Meta_Boxes_Activity();
+			$ppw_messages_meta_boxes = new PPW_Meta_Boxes_Messages();
+		} // end custom_meta_boxes
+
+		/**
+		 * Options
+		 *
+		 * @since      0.0.1
+		 * @return     PPW_Options object
+		 */
+		protected function plugin_options() {
+			static $object = null;
+			if ( is_null( $object ) ) {
+				$object = new PPW_Options();
+				$object->hooks();
+			}
+			return $object;
 		} // end custom_meta_boxes
 
 	}

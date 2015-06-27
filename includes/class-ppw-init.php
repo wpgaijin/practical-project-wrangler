@@ -21,7 +21,10 @@ if( !class_exists( 'PPW_Init' ) ) {
 			add_action( 'init', array( $this, 'register_post_types' ) );
 			add_action( 'init', array( $this, 'register_taxomonies' ) );
 			$this->add_user_roles();
-			$this->activity_log();
+			$this->load_styles();
+			$this->load_scripts();
+			$this->shortcodes();
+			$this->comment_editor();
 			//$this->include_shortcodes();
 		} // end __construct
 
@@ -58,24 +61,47 @@ if( !class_exists( 'PPW_Init' ) ) {
 		} // end add_user_roles
 
 		/**
-		 * Include shorcodes
+		 * Load Styles
 		 *
 		 * @since      0.0.1
 		 * @return     void
 		 */
-		protected function include_shortcodes() {
-			$ppw_shortcode_client_form = new PPW_Shortcode_Client_Form();
-		} // end include_shortcodes
+		protected function load_styles() {
+			$ppw_load_styles = new PPW_Load_Styles();
+		} // end load_styles
 
 		/**
-		 * Activity log
+		 * Load Scripts
 		 *
 		 * @since      0.0.1
 		 * @return     void
 		 */
-		protected function activity_log() {
-			$ppw_activity_log = new PPW_Activity_Log();
-		} // end activity_log
+		protected function load_scripts() {
+			$ppw_load_scripts = new PPW_Load_Scripts();
+		} // end load_scripts
+
+		/**
+		 * Add shortcodes
+		 *
+		 * @since      0.0.1
+		 * @return     void
+		 */
+		protected function shortcodes() {
+			$ppw_shortcode_client_form      = new PPW_Shortcode_Client_Form();
+			$ppw_shortcode_project_form     = new PPW_Shortcode_Project_Form();
+			$ppw_shortcode_task_form        = new PPW_Shortcode_Task_Form();
+			$ppw_shortcode_display_projects = new PPW_Shortcode_Display_Projects();
+		} // end shortcodes
+
+		/**
+		 * Add comment editor
+		 *
+		 * @since      0.0.1
+		 * @return     void
+		 */
+		protected function comment_editor() {
+			$ppw_comment_editor = new PPW_Comment_Editor();
+		} // end comment_editor
 
 	}
 } // end PPW_Init

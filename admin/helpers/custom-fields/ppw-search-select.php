@@ -10,15 +10,15 @@
  * @param object $field_object_type Instance of CMB2_Types object
  */
 function ppw_render_search( $field, $escaped_value, $object_id, $object_type, $field_object_type ) {
-	wp_enqueue_script( PPW_TEXTDOMAIN . '-select2', PPW_PLUGIN_URL . 'admin/helpers/js/select2.min.js', array( 'jquery' ), PPW_VERSION, true );
-	wp_enqueue_script( PPW_TEXTDOMAIN . '-select2-init', PPW_PLUGIN_URL . 'admin/helpers/js/select2-init.js', array( 'jquery', 'ppw-select2' ), PPW_VERSION, true );
-	wp_enqueue_style( PPW_TEXTDOMAIN . '-select2-style', PPW_PLUGIN_URL . 'admin/helpers/css/select2.css', '', PPW_VERSION, 'all');
+	wp_enqueue_script( PPW_PREFIX . '-select2', PPW_PLUGIN_URL . 'admin/helpers/js/select2.min.js', array( 'jquery' ), PPW_VERSION, true );
+	wp_enqueue_script( PPW_PREFIX . '-select2-init', PPW_PLUGIN_URL . 'admin/helpers/js/select2-init.js', array( 'jquery', 'ppw-select2' ), PPW_VERSION, true );
+	wp_enqueue_style( PPW_PREFIX . '-select2-style', PPW_PLUGIN_URL . 'admin/helpers/css/select2.css', '', PPW_VERSION, 'all');
 
 	$options = $field->options();
 	$current_value = $field->value;
 
 	?>
-	<select style="min-width: 100%" name="<?php echo $field->args['id']; ?>[]" id="<?php echo $field->args['id']; ?>" class="ppw-search">
+	<select name="<?php echo $field->args['id']; ?>[]" id="<?php echo $field->args['id']; ?>" class="ppw-search">
 		<option></option>
 		<?php foreach( $options as $key => $value ){ ?>
 			<?php 

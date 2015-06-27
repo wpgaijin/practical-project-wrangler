@@ -1,14 +1,53 @@
 <?php
 /**
- * Clients Meta Boxes
+ * Client form shortcode
  *
  * @package    PPW
- * @subpackage PPW/Admin/Classes
+ * @subpackage PPW/Includes/Shortcodes
  * @since      0.0.1
  */
 
-if( !class_exists( 'PPW_Meta_Boxes_Clients' ) ) {
-	class PPW_Meta_Boxes_Clients {
+if( !class_exists( 'PPW_Shortcode_Client_Form' ) ) {
+	class PPW_Shortcode_Client_Form {
+		/**
+		 * Form ID
+		 *
+		 * @since  0.0.1
+		 * @var    string $form_id The form id
+		 */
+		protected $form_id;
+
+		/**
+		 * Fake form id
+		 *
+		 * @since  0.0.1
+		 * @var    string $fake_id A fake id for saving new posts
+		 */
+		protected $fake_id;
+
+		/**
+		 * Post Title
+		 *
+		 * @since  0.0.1
+		 * @var    string $the_post_title the post's title
+		 */
+		protected $title_id;
+
+		/**
+		 * Submit name attr
+		 *
+		 * @since  0.0.1
+		 * @var    string $submit_name_attr
+		 */
+		protected $submit_name_attr;
+
+		/**
+		 * Shortcode ID
+		 *
+		 * @since  0.0.1
+		 * @var    string $shortcode_id the shortcode ID
+		 */
+		protected $shortcode_id;
 
 		/**
 		 * Initialize the class
@@ -16,50 +55,49 @@ if( !class_exists( 'PPW_Meta_Boxes_Clients' ) ) {
 		 * @since 0.0.1
 		 */
 		public function __construct() {
-			add_action( 'cmb2_init', array( $this, 'clients_general_meta_boxes' ) );
-			add_action( 'cmb2_init', array( $this, 'clients_billing_meta_boxes' ) );
-			add_action( 'cmb2_init', array( $this, 'clients_primary_contact_meta_boxes' ) );
-			add_action( 'cmb2_init', array( $this, 'clients_additional_contacts_meta_boxes' ) );
-			add_action( 'cmb2_init', array( $this, 'clients_additional_information_meta_boxes' ) );
-			add_action( 'cmb2_init', array( $this, 'clients_id_number_meta_boxes' ) );
-			add_action( 'cmb2_init', array( $this, 'clients_status_meta_boxes' ) );
+			$this->form_id           = PPW_PREFIX . '_clients_frontend_form';
+			$this->fake_id           = PPW_PREFIX . '_clients_fake_id';
+			$this->title_id          = PPW_PREFIX . '_clients_name';
+			$this->submit_name_attr  = PPW_PREFIX . '_clients_submit';
+			$this->shortcode_id      = PPW_PREFIX . '_client_form';
+			add_action( 'cmb2_init', array( $this, 'register_form_fields' ) );
+			add_action( 'cmb2_after_init', array( $this, 'save_form' ) );
+			add_shortcode( $this->shortcode_id, array( $this, 'shortcode' ) );
 		} // end __construct
 
 		/**
-		 * Client general meta boxes
+		 * Register form fields
 		 *
-		 * @since      0.0.1
+		 * @since      0.0.12
 		 * @return     void
 		 */
-		public function clients_general_meta_boxes() {
+		public function register_form_fields() {
 			$fields = new_cmb2_box( array(
-				'id'           => PPW_PREFIX . '_clients_general_info',
-				'title'        => __( 'General Information', PPW_TEXTDOMAIN ),
+				'id'           => $this->form_id,
 				'object_types' => array( 'ppw_clients' ),
-				'context'      => 'normal',
-				'priority'     => 'high',
-				'show_names'   => true,
-				'cmb_styles'   => false
+				'hookup'       => false,
+				'save_fields'  => false,
+			) );
+			$fields->add_field( array(
+				'name'        => __( 'Client Name', PPW_TEXTDOMAIN ),
+				'id'          => $this->title_id,
+				'type'        => 'text',
 			) );
 			$fields->add_field( array(
 				'name'        => __( 'Address', PPW_TEXTDOMAIN ),
 				'id'          => PPW_PREFIX . '_clients_address',
 				'type'        => 'text',
-				'row_classes' => 'ppw-third-field ppw-padding-right'
 			) );
 			$fields->add_field( array(
 				'name'        => __( 'City', PPW_TEXTDOMAIN ),
 				'id'          => PPW_PREFIX . '_clients_city',
 				'type'        => 'text',
-				'row_classes' => 'ppw-third-field ppw-padding-right'
 			) );
 			$fields->add_field( array(
 				'name'             => __( 'State', PPW_TEXTDOMAIN ),
 				'id'               => PPW_PREFIX . '_clients_state',
-				'type'             => 'select',
-				'row_classes'      => 'ppw-third-field',
-				'show_option_none' => false,
-				'default'          => 'OH',
+				'type'             => 'search',
+				'show_option_none' => true,
 				'options'          => array(
 					'AL'     => __( 'Alabama', PPW_TEXTDOMAIN ),
 					'AK'     => __( 'Alaska', PPW_TEXTDOMAIN ),
@@ -126,43 +164,21 @@ if( !class_exists( 'PPW_Meta_Boxes_Clients' ) ) {
 				'name'        => __( 'Zip Code', PPW_TEXTDOMAIN ),
 				'id'          => PPW_PREFIX . '_clients_zip',
 				'type'        => 'text',
-				'row_classes' => 'ppw-third-field ppw-padding-right'
 			) );
 			$fields->add_field( array(
 				'name'        => __( 'Phone Number', PPW_TEXTDOMAIN ),
 				'id'          => PPW_PREFIX . '_clients_phone',
 				'type'        => 'text',
-				'row_classes' => 'ppw-third-field ppw-padding-right'
 			) );
 			$fields->add_field( array(
 				'name'        => __( 'Email Address', PPW_TEXTDOMAIN ),
 				'id'          => PPW_PREFIX . '_clients_email',
 				'type'        => 'text_email',
-				'row_classes' => 'ppw-third-field'
 			) );
 			$fields->add_field( array(
 				'name'        => __( 'Website URL', PPW_TEXTDOMAIN ),
 				'id'          => PPW_PREFIX . '_clients_url',
 				'type'        => 'text_url',
-				'row_classes' => 'ppw-third-field ppw-padding-right'
-			) );
-		} // end clients_general_meta_boxes
-
-		/**
-		 * Client billing meta boxes
-		 *
-		 * @since      0.0.1
-		 * @return     void
-		 */
-		public function clients_billing_meta_boxes() {
-			$fields = new_cmb2_box( array(
-				'id'           => PPW_PREFIX . '_clients_billing_info',
-				'title'        => __( 'Billing Information', PPW_TEXTDOMAIN ),
-				'object_types' => array( 'ppw_clients' ),
-				'context'      => 'normal',
-				'priority'     => 'high',
-				'show_names'   => true,
-				'cmb_styles'   => false
 			) );
 			$fields->add_field( array(
 				'name'       => __( 'Billing Addess is Different', PPW_TEXTDOMAIN ),
@@ -173,27 +189,26 @@ if( !class_exists( 'PPW_Meta_Boxes_Clients' ) ) {
 				'name'        => __( 'Company Name', PPW_TEXTDOMAIN ),
 				'id'          => PPW_PREFIX . '_clients_billing_company_name',
 				'type'        => 'text',
-				'row_classes' => 'ppw-full-field ppw-hide'
+				'row_classes' => 'ppw-hide'
 			) );
 			$fields->add_field( array(
 				'name'        => __( 'Address', PPW_TEXTDOMAIN ),
 				'id'          => PPW_PREFIX . '_clients_billing_address',
 				'type'        => 'text',
-				'row_classes' => 'ppw-third-field ppw-hide ppw-padding-right'
+				'row_classes' => 'ppw-hide'
 			) );
 			$fields->add_field( array(
 				'name'        => __( 'City', PPW_TEXTDOMAIN ),
 				'id'          => PPW_PREFIX . '_clients_billing_city',
 				'type'        => 'text',
-				'row_classes' => 'ppw-third-field ppw-hide ppw-padding-right'
+				'row_classes' => 'ppw-hide'
 			) );
 			$fields->add_field( array(
 				'name'             => __( 'State', PPW_TEXTDOMAIN ),
 				'id'               => PPW_PREFIX . '_clients_billing_state',
-				'type'             => 'select',
-				'row_classes'      => 'ppw-third-field ppw-hide',
-				'show_option_none' => false,
-				'default'          => 'OH',
+				'type'             => 'search',
+				'show_option_none' => true,
+				'row_classes' => 'ppw-hide',
 				'options'          => array(
 					'AL'     => __( 'Alabama', PPW_TEXTDOMAIN ),
 					'AK'     => __( 'Alaska', PPW_TEXTDOMAIN ),
@@ -260,76 +275,36 @@ if( !class_exists( 'PPW_Meta_Boxes_Clients' ) ) {
 				'name'        => __( 'Zip Code', PPW_TEXTDOMAIN ),
 				'id'          => PPW_PREFIX . '_clients_billing_zip',
 				'type'        => 'text',
-				'row_classes' => 'ppw-third-field ppw-hide ppw-padding-right'
+				'row_classes' => 'ppw-hide'
 			) );
 			$fields->add_field( array(
 				'name'        => __( 'Phone Number', PPW_TEXTDOMAIN ),
 				'id'          => PPW_PREFIX . '_clients_billing_phone',
 				'type'        => 'text',
-				'row_classes' => 'ppw-third-field ppw-hide ppw-padding-right'
+				'row_classes' => 'ppw-hide'
 			) );
 			$fields->add_field( array(
 				'name'        => __( 'Email Address', PPW_TEXTDOMAIN ),
 				'id'          => PPW_PREFIX . '_clients_billing_email',
 				'type'        => 'text_email',
-				'row_classes' => 'ppw-third-field ppw-hide'
-			) );
-		} // end clients_billing_meta_boxes
-
-		/**
-		 * Client primary contact meta boxes
-		 *
-		 * @since      0.0.1
-		 * @return     void
-		 */
-		public function clients_primary_contact_meta_boxes() {
-			$fields = new_cmb2_box( array(
-				'id'           => PPW_PREFIX . '_clients_primary_contact',
-				'title'        => __( 'Primary Contact', PPW_TEXTDOMAIN ),
-				'object_types' => array( 'ppw_clients' ),
-				'context'      => 'normal',
-				'priority'     => 'high',
-				'show_names'   => true,
-				'cmb_styles'   => false
+				'row_classes' => 'ppw-hide'
 			) );
 			$fields->add_field( array(
-				'name'        => __( 'Contact Name', PPW_TEXTDOMAIN ),
+				'name'        => __( 'Conact Name', PPW_TEXTDOMAIN ),
 				'id'          => PPW_PREFIX . '_clients_primary_contact_name',
 				'type'        => 'text',
-				'row_classes' => 'ppw-third-field ppw-padding-right'
 			) );
 			$fields->add_field( array(
 				'name'        => __( 'Phone Number', PPW_TEXTDOMAIN ),
 				'id'          => PPW_PREFIX . '_clients_primary_contact_phone',
 				'type'        => 'text',
-				'row_classes' => 'ppw-third-field ppw-padding-right'
 			) );
 			$fields->add_field( array(
 				'name'        => __( 'Email Address', PPW_TEXTDOMAIN ),
 				'id'          => PPW_PREFIX . '_clients_primary_contact_email',
 				'type'        => 'text_email',
-				'row_classes' => 'ppw-third-field'
 			) );
-		} // end clients_primary_contact_meta_boxes
-
-		/**
-		 * Client additional contacts meta boxes
-		 *
-		 * @since      0.0.1
-		 * @return     void
-		 */
-		public function clients_additional_contacts_meta_boxes() {
-			$group_fields = new_cmb2_box( array(
-				'id'           => PPW_PREFIX . '_clients_additional_contacts',
-				'title'        => __( 'Additional Contacts', PPW_TEXTDOMAIN ),
-				'object_types' => array( 'ppw_clients' ),
-				'context'      => 'normal',
-				'priority'     => 'high',
-				'show_names'   => true,
-				'cmb_styles'   => false
-			) );
-
-			$group_field_id = $group_fields->add_field( array(
+			$group_field_id = $fields->add_field( array(
 				'id'          => PPW_PREFIX . '_clients_additional_contacts_group',
 				'type'        => 'group',
 				'options'     => array(
@@ -339,113 +314,199 @@ if( !class_exists( 'PPW_Meta_Boxes_Clients' ) ) {
 					'sortable'      => false,
 				),
 			) );
-			$group_fields->add_group_field( $group_field_id, array(
+			$fields->add_group_field( $group_field_id, array(
 				'name'        => __( 'Conact Name', PPW_TEXTDOMAIN ),
 				'id'          => PPW_PREFIX . '_clients_additional_contacts_name',
 				'type'        => 'text',
-				'row_classes' => 'ppw-third-field ppw-padding-right'
 			) );
-			$group_fields->add_group_field( $group_field_id, array(
+			$fields->add_group_field( $group_field_id, array(
 				'name'        => __( 'Phone Number', PPW_TEXTDOMAIN ),
 				'id'          => PPW_PREFIX . '_clients_additional_contacts_phone',
 				'type'        => 'text',
-				'row_classes' => 'ppw-third-field ppw-padding-right'
 			) );
-			$group_fields->add_group_field( $group_field_id, array(
+			$fields->add_group_field( $group_field_id, array(
 				'name'        => __( 'Email Address', PPW_TEXTDOMAIN ),
 				'id'          => PPW_PREFIX . '_clients_additional_contacts_email',
 				'type'        => 'text_email',
-				'row_classes' => 'ppw-third-field'
-			) );
-		} // end clients_additional_contacts_meta_boxes
-
-		/**
-		 * Client additional inforamtion
-		 *
-		 * @since      0.0.1
-		 * @return     void
-		 */
-		public function clients_additional_information_meta_boxes() {
-			$fields = new_cmb2_box( array(
-				'id'           => PPW_PREFIX . '_clients_additional_information',
-				'title'        => __( 'Additional Information', PPW_TEXTDOMAIN ),
-				'object_types' => array( 'ppw_clients' ),
-				'context'      => 'normal',
-				'priority'     => 'high',
-				'show_names'   => true,
-				'cmb_styles'   => false
 			) );
 			$fields->add_field( array(
 				'name'        => __( 'Information', PPW_TEXTDOMAIN ),
 				'id'          => PPW_PREFIX . '_clients_add_info',
-				'type'        => 'wysiwyg'
-			) );
-		} // end clients_additional_information_meta_boxes
-
-		/**
-		 * Client additional inforamtion
-		 *
-		 * @since      0.0.1
-		 * @return     void
-		 */
-		public function clients_id_number_meta_boxes() {
-			$fields = new_cmb2_box( array(
-				'id'           => PPW_PREFIX . '_clients_id_numbers',
-				'title'        => __( 'Client Number ID', PPW_TEXTDOMAIN ),
-				'object_types' => array( 'ppw_clients' ),
-				'context'      => 'side',
-				'priority'     => 'high',
-				'show_names'   => true,
-				'cmb_styles'   => false
-			) );
-			$fields->add_field( array(
-				'name'       => __( 'Client Number', PPW_TEXTDOMAIN ),
-				'id'         => PPW_PREFIX . '_clients_number',
-				'type'       => 'text_small',
-				'default'    => array( $this, 'count_posts' )
-			) );
-		} // end clients_id_number_meta_boxes
-
-		/**
-		 * Client additional inforamtion
-		 *
-		 * @since      0.0.1
-		 * @return     void
-		 */
-		public function clients_status_meta_boxes() {
-			$fields = new_cmb2_box( array(
-				'id'           => PPW_PREFIX . '_clients_status',
-				'title'        => __( 'Client Status', PPW_TEXTDOMAIN ),
-				'object_types' => array( 'ppw_clients' ),
-				'context'      => 'side',
-				'priority'     => 'default',
-				'show_names'   => true,
-				'cmb_styles'   => false
+				'type'        => 'wysiwyg',
+				'options'    => array(
+						'wpautop'       => true,
+						'media_buttons' => false,
+						'textarea_rows' => get_option('default_post_edit_rows', 10),
+						'teeny'         => true,
+						'quicktags'     => false
+					)
 			) );
 			$fields->add_field( array(
 				'name'       => __( 'Client is Active', PPW_TEXTDOMAIN ),
 				'id'         => PPW_PREFIX . '_clients_status',
 				'type'       => 'checkbox',
-				'default'    => 1
+				'default'    => 1,
+				'show_names' => false,
+				'attributes' => array(
+			        'hidden' => 'hidden',
+			    ),
 			) );
-		} // end clients_status_meta_boxes
+			$fields->add_field( array(
+				'name'       => __( 'Client Number', PPW_TEXTDOMAIN ),
+				'id'         => PPW_PREFIX . '_clients_number',
+				'type'       => 'text_small',
+				'default'    => $this->count_posts(),
+				'show_names' => false,
+				'attributes' => array(
+			        'hidden' => 'hidden',
+			    ),
+			) );
+		} // end register_form_fields
 
 		/**
 		 * Count Posts
 		 *
+		 * Count the posts for custom ID
+		 *
 		 * @since      0.0.1
-		 * @return     int the post total +1
+		 * @return     int the next post number ID
 		 */
 		public function count_posts() {
 			global $post;
 			$count_posts = wp_count_posts('ppw_clients');
-			$project_number_id = get_post_meta( $post->ID, PPW_PREFIX . '_clients_number', true );
-			if( !$project_number_id ) {
-				$published = $count_posts->publish+1;
-			} else {
-				$published = $project_number_id;
-			}
+			$published = $count_posts->publish+1;
 			return $published;
 		} // end count_posts
+
+		/**
+		 * Save the form
+		 *
+		 * @since      0.0.1
+		 * @return     void
+		 */
+		public function save_form() {
+			// If no form submission, bail
+			if ( empty( $_POST ) || ! isset( $_POST[$this->submit_name_attr], $_POST['object_id'] ) ) {
+				return false;
+			}
+			// Get CMB2 metabox object
+			$cmb = cmb2_get_metabox( $this->form_id, $this->fake_id );
+
+			$post_data = array();
+			// Get our shortcode attributes and set them as our initial post_data args
+			if ( isset( $_POST['atts'] ) ) {
+				foreach ( (array) $_POST['atts'] as $key => $value ) {
+					$post_data[ $key ] = sanitize_text_field( $value );
+				}
+				unset( $_POST['atts'] );
+			}
+			// Check security nonce
+			if ( ! isset( $_POST[ $cmb->nonce() ] ) || ! wp_verify_nonce( $_POST[ $cmb->nonce() ], $cmb->nonce() ) ) {
+				return $cmb->prop( 'submission_error', new WP_Error( 'security_fail', __( 'Security check failed.' ) ) );
+			}
+			// Check title submitted
+			if ( empty( $_POST[$this->title_id] ) ) {
+				return $cmb->prop( 'submission_error', new WP_Error( 'post_data_missing', __( 'Client Name Required' ) ) );
+			}
+			// And that the title is not the default title
+			if ( $cmb->get_field( $this->title_id )->default() == $_POST[$this->title_id] ) {
+				return $cmb->prop( 'submission_error', new WP_Error( 'post_data_missing', __( 'Please enter the client name.' ) ) );
+			}
+			// Fetch sanitized values
+			$sanitized_values = $cmb->get_sanitized_values( $_POST );
+			// Set our post data arguments
+			$post_data['post_title']   = $sanitized_values[$this->title_id];
+			unset( $sanitized_values[$this->title_id] );
+			// Create the new post
+			$new_submission_id = wp_insert_post( $post_data, true );
+			// If we hit a snag, update the user
+			if ( is_wp_error( $new_submission_id ) ) {
+				return $cmb->prop( 'submission_error', $new_submission_id );
+			}
+			// Loop through remaining (sanitized) data, and save to post-meta
+			foreach ( $sanitized_values as $key => $value ) {
+				update_post_meta( $new_submission_id, $key, $value );
+			}
+			// Redirect after submit
+			wp_redirect( esc_url_raw( add_query_arg( 'post_submitted', $new_submission_id ) ) );
+			exit;
+		} // end save_the_form
+
+		/**
+		 * The Shortcode
+		 *
+		 * @since      0.0.1
+		 * @param      array $atts the shrtcode attributes
+		 * @return     mixed $output the shoutcode output
+		 */
+		public function shortcode( $atts = array() ) {
+			$this->check_for_shortcode();
+			// Get CMB2 metabox object
+			$cmb = cmb2_get_metabox( $this->form_id, $this->fake_id );
+			// Get $cmb object_types
+			$post_types = $cmb->prop( 'object_types' );
+			// Current user
+			$user_id = get_current_user_id();
+			// Parse attributes
+			$atts = shortcode_atts( array(
+				'post_author' => $user_id ? $user_id : 1, // Current user, or admin
+				'post_status' => 'publish',
+				'post_type'   => reset( $post_types ), // Only use first object_type in array
+			), $atts, $this->shortcode_id );
+			/*
+			 * Let's add these attributes as hidden fields to our cmb form
+			 * so that they will be passed through to our form submission
+			 */
+			foreach ( $atts as $key => $value ) {
+				$cmb->add_hidden_field( array(
+					'field_args'  => array(
+						'id'    => "atts[$key]",
+						'type'  => 'hidden',
+						'default' => $value,
+					),
+				) );
+			}
+			// Initiate our output variable
+			$output = '';
+			// Get any submission errors
+			if ( ( $error = $cmb->prop( 'submission_error' ) ) && is_wp_error( $error ) ) {
+				// If there was an error with the submission, add it to our ouput.
+				$output .= '<h3>' . sprintf( __( 'There was an error in the submission: %s', PPW_TEXTDOMAIN ), '<strong>'. $error->get_error_message() .'</strong>' ) . '</h3>';
+			}
+			// Get our form
+			$form_args = array(
+				'form_format' => '<form class="cmb-form" method="post" id="%1$s" enctype="multipart/form-data" encoding="multipart/form-data"><input type="hidden" name="object_id" value="%2$s">%3$s<input type="submit" name="' . $this->submit_name_attr . '" value="%4$s" class="button-primary"></form>',
+				'save_button' => __( 'Submit Post', PPW_TEXTDOMAIN )
+			);
+			$list = 'registered';
+			// enqueue script if registered
+			if( wp_script_is( PPW_PREFIX . '-hide-comments', $list ) ) {
+				// script that hides the comments area
+				wp_enqueue_script( PPW_PREFIX . '-hide-comments' );
+			}
+			if( wp_script_is( PPW_PREFIX . '-hide-comments', $list ) ) {
+				// script that hides the comments area
+				wp_enqueue_script( PPW_PREFIX . '-clients-form' );
+			} 
+			$output .= cmb2_get_metabox_form( $cmb, $this->fake_id, $form_args );
+			return $output;
+		} // end shortcode
+
+		/**
+		 * Check for shortcode
+		 *
+		 * Check if the shortcode in the page content
+		 *
+		 * @since      0.0.1
+		 * @return     [type] [description]
+		 */
+		public function check_for_shortcode() {
+			global $post;
+			$subject = get_the_content($post->ID);
+			if( has_shortcode( $subject, $this->shortcode_id ) ) {
+				$post->comment_status = 'closed';
+				$post->ping_status = 'closed';
+			}
+		} // end check_for_shortcode
 	}
-} // end PPW_Meta_Boxes_Clients
+} // end PPW_Shortcode_Client_Form

@@ -1,0 +1,24 @@
+// Colors
+//================================================================================
+// text colors
+$color__font: #333;
+$color__header: #333;
+// link colors
+$color__link: #333;
+$color__link-hover: #333;
+$color__link-visited: #333;
+// color pallete
+
+
+// Typography
+//================================================================================
+$font-size__base: 16;
+// The default font family.
+$font-family__base: sans-serif !default;
+// The font sizes for h1-h6.
+$font-size__h1: 2    * $font-size__base !default;
+$font-size__h2: 1.5  * $font-size__base !default;
+$font-size__h3: 1.17 * $font-size__base !default;
+$font-size__h4: 1    * $font-size__base !default;
+$font-size__h5: 0.83 * $font-size__base !default;
+$font-size__h6: 0.67 * $font-size__base !default;

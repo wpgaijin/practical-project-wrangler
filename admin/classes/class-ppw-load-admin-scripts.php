@@ -27,16 +27,10 @@ if( !class_exists( 'PPW_Admin_Load_Scripts' ) ) {
 		 */
 		public function meta_box_scripts( $hook_suffix ) {
 			global $typenow;
-			if( $typenow == 'ppw_clients' ) {
+			if( $typenow == PPW_PREFIX . '_clients' ) {
 				if( 'post.php' == $hook_suffix || 'post-new.php' == $hook_suffix ) {
-					wp_register_script( PPW_TEXTDOMAIN . '-clients-meta-boxes-scripts', PPW_PLUGIN_URL . 'admin/js/admin-clients-meta-boxes.js', array( 'jquery' ), PPW_VERSION, true );
-					wp_enqueue_script( PPW_TEXTDOMAIN . '-clients-meta-boxes-scripts' );
-				}
-			}
-			if( $typenow == 'ppw_projects' ) {
-				if( 'post.php' == $hook_suffix || 'post-new.php' == $hook_suffix ) {
-					wp_register_script( PPW_TEXTDOMAIN . '-clients-meta-boxes-scripts', PPW_PLUGIN_URL . 'admin/js/admin-projects-meta-boxes.js', array( 'jquery' ), PPW_VERSION, true );
-					wp_enqueue_script( PPW_TEXTDOMAIN . '-clients-meta-boxes-scripts' );
+					wp_register_script( PPW_PREFIX . '-clients-form', PPW_PLUGIN_URL . 'includes/js/ppw-client-form.min.js', array( 'jquery' ), PPW_VERSION, true );
+					wp_enqueue_script( PPW_PREFIX . '-clients-form' );
 				}
 			}
 		} // end meta_box_scripts

@@ -1,0 +1,46 @@
+/*---------------------------------------------------------
+ * Project Listing
+---------------------------------------------------------*/
+.ppw__project-display {
+	display: none;
+}
+@media screen and (min-width: 768px) {
+	.ppw__project-display {
+		display: block;
+	}
+}
+.ppw__project-display--mobile {
+	display: block;
+}
+@media screen and (min-width: 768px) {
+	.ppw__project-display--mobile {
+		display: none;
+	}
+}
+.ppw__Listing-group--title {
+	display: block;
+	width: 50px;
+}
+.ppw__project-display--entry {
+	position: relative;
+	.ppw__project-name {
+
+	}
+	.ppw__categories {
+		a {
+			position: relative;
+			z-index: 2;
+		}	
+	}
+	.ppw__project-description {
+
+	}
+	.ppw__products--link {
+		position: absolute;
+		z-index: 1;
+		width: 100%;
+		height: 100%;
+		top: 0px;
+		left: 0px;
+	}
+}

@@ -1,0 +1,98 @@
+/*---------------------------------------------------------
+ * Forms
+---------------------------------------------------------*/
+.cmb2-wrap {
+	.cmb-th {
+		width: 100%;
+  		padding: 0.5em 0 0;
+	}
+	.cmb-td {
+		padding: 0.5em 0 0;
+	}
+	input[type="text"],
+	input[type="select"],
+	input[type="email"],
+	select {
+		width: 300px !important;
+		max-width: 100%;
+	}
+	div.mce-edit-area,
+	div.mce-toolbar-grp {
+	  border-right: 1px solid #dedede !important;
+	  border-left: 1px solid #dedede !important;
+	}
+	div.mce-toolbar-grp {
+		border-top: 1px solid #dedede !important;
+	}
+	.mce-flow-layout {
+		border: 1px solid #dedede !important;
+	}
+	.mce-panel {
+		border: 0 solid #dedede !important;
+		background-color: #f0f0f0 !important;
+		background-image: -moz-linear-gradient(top,#fdfdfd,#ddd) !important;
+		background-image: -webkit-gradient(linear,0 0,0 100%,from(#fdfdfd),to(#ddd)) !important;
+		background-image: -webkit-linear-gradient(top,#fdfdfd,#ddd) !important;
+		background-image: -o-linear-gradient(top,#fdfdfd,#ddd) !important;
+		background-image: linear-gradient(to bottom,#fdfdfd,#ddd) !important;
+		background-repeat: repeat-x !important;
+		filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fffdfdfd', endColorstr='#ffdddddd', GradientType=0) !important;
+		zoom: 1 !important;
+	}
+	.cmb-type-wysiwyg {
+		.cmb-td {
+			width: 100%;
+			padding: 15px 0;
+		}
+	}
+	.cmb-repeat-group-wrap {
+		margin-top: 1em !important;
+	}
+	.cmb-nested {
+		width: 99% !important;
+	}
+	.cmb2-metabox .cmb-repeat-group-wrap {
+		max-width: none;
+	}
+	.select2-container {
+		.select2-selection--multiple {
+			.select2-selection__rendered {
+				display: block !important;
+			}
+		}
+		.select2-selection--single {
+			height: 33px;
+		}
+	}
+	.select2-container--default   {
+		min-width: 300px;
+		.select2-selection--single {
+			background-color: #fff;
+		  	border: 1px solid #ccc;
+		  	border-radius: 3px;
+		  	padding: 5px;
+	  		color: #666;
+			.select2-selection__rendered {
+				color: #666;
+	  			line-height: 1.3em;
+			}
+			.select2-selection__arrow {
+				top: 4px;
+			}
+		}
+		.select2-search--inline {
+			.select2-search__field {
+				padding: 0;
+			}
+		}
+	}
+	.select2-selection__choice {
+		margin-bottom: 0;
+	}
+	.ppw-hide {
+		display: none;
+	}
+	.ppw-show {
+		display: block;
+	}
+}

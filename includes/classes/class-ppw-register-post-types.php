@@ -20,7 +20,7 @@ if( !class_exists( 'PPW_Register_Post_Types' ) ) {
 			$this->register_projects_post_type();
 			$this->register_tasks_post_type();
 			$this->register_clients_post_type();
-			$this->register_activity_post_type();
+			$this->register_messages_post_type();
 		} // end __construct
 
 		/**
@@ -50,11 +50,11 @@ if( !class_exists( 'PPW_Register_Post_Types' ) ) {
 		public function register_tasks_post_type() {
 			$args = array(
 				'description'     => 'The Tasks post type',
-				'menu_icon'       => 'dashicons-hammer',
 				'supports'        => array( 'title', 'comments', 'author' ),
+				'show_in_menu'    => 'edit.php?post_type=ppw_projects',
 				'rewrite'         => array( 'slug'=> 'tasks' )
 			);
-			$ppw_register_tasks_post_type = new PPW_Helper_Register_Post_Type( 'ppw_tasks', 'Task', 'Tasks', array(), $args );
+			$ppw_register_tasks_post_type = new PPW_Helper_Register_Post_Type( 'ppw_tasks', 'Task', 'Tasks', array( 'all_items' => __( 'Tasks' ) ), $args );
 			
 		} // end register_clients_post_type
 
@@ -77,22 +77,21 @@ if( !class_exists( 'PPW_Register_Post_Types' ) ) {
 		} // end register_clients_post_type
 
 		/**
-		 * Register activity post type
+		 * Register messages post type
 		 *
 		 * @since      0.0.1
 		 * @see        PPW_Helper_Register_Post_Type
 		 * @return     void
 		 */
-		public function register_activity_post_type() {
+		public function register_messages_post_type() {
 			$args = array(
-				'description'     => 'The activity log',
-				'menu_icon'       => 'dashicons-index-card',
-				'supports'        => array( 'title', 'editor' ),
-				'rewrite'         => array( 'slug'=> 'activity' )
+				'description'     => 'The Messages post type',
+				'show_in_menu'    => 'edit.php?post_type=ppw_projects',
+				'rewrite'         => array( 'slug'=> 'message' )
 			);
-			$ppw_register_activity_post_type = new PPW_Helper_Register_Post_Type( 'ppw_activity', 'Acivity', 'Activity', array(), $args );
+			$ppw_register_messages_post_type = new PPW_Helper_Register_Post_Type( 'ppw_message', 'Message', 'Messages', array( 'all_items' => __( 'Messages' ) ), $args );
 			
-		} // end register_activity_post_type
+		} // end register_messages_post_type
 
 	}
 } // end PPW_Register_Post_Types
