@@ -15,8 +15,8 @@
 	clear: both;
 }
 .cmb-th {
-	margin-bottom: 0.5em;
 	margin-top: 0.5em;
+	margin-bottom: 0.5em;
 }
 .cmb-remove-field-row {
 	margin-top: 6em;
@@ -33,7 +33,7 @@
 	position: relative;
 }
 .cmb2-id-ppw-clients-billing-different .cmb-td,
-.cmb2-id-ppw-clients-status .cmb-td  {
+.cmb2-id-ppw-clients-status .cmb-td {
 	top: 10px;
 }
 .ppw-full-field input,
@@ -71,13 +71,13 @@
 	float: none;
 }
 @media screen and (min-width: 960px) {
-	.ppw-half-field{
+	.ppw-half-field {
+		float: left;
 		width: 48%;
-		float: left;
 	}
-	.ppw-third-field{
-		width: 32%;
+	.ppw-third-field {
 		float: left;
+		width: 32%;
 	}
 	.ppw-padding-right {
 		padding-right: 2%;
@@ -96,9 +96,8 @@
 }
 #ppw_clients_additional_information {
 	border: none;
-	-webkit-box-shadow: none;
-	box-shadow: none;
 	background: transparent;
+	box-shadow: none;
 }
 .select2-container {
   width: 99% !important;
@@ -120,6 +119,47 @@
 	.cmb-th,
 	.cmb-td {
 		margin-top: 0.5em;
-		padding: 0px 10px
+		padding: 0px 10px;
+	}
+}
+/*---------------------------------------------------------
+ * Metabox Fields
+---------------------------------------------------------*/
+.inside {
+	overflow: hidden;
+}
+.ppw__fields {
+	margin-top: 0.5em;
+	&.ppw__fields--text {
+		.ppw__text {
+			width: 100%
+		}
+	}
+	.ppw__th {
+		width: 100%;
+		margin-bottom: 0.5em;
+		margin-top: 0.5em;
+		font-size: 14px;
+	}
+	.ppw__td {
+		width: 100%;
+	}
+	&.ppw__fields--one-third {
+		width: 100%;
+		float: none;
+		margin-right: 0;
+		&.ppw__row-last {
+			margin-right: 0;
+		}
+		@include media-query(960px) {
+			width: 32%;
+			float: left;
+			margin-right: 2%;
+		}
+	}
+	.ppw__text,
+	.ppw__select {
+		width: 100%;
+		max-width: 100%;
 	}
 }

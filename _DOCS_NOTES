@@ -1,0 +1,318 @@
+Classes:
+
+  PPW_Add_Roles:
+    Add the default users roles Client, Project Manager, and Co-Worker
+
+    Location: includes/classes/class-ppw-add-user-roles.php
+    Since: 0.0.1
+
+  PPW_Admin_Load_Scripts:
+    Registers and Enqueues external JavaScript files and sets up localized JavaScript
+
+    Location: admin/classes/class-ppw-load-admin-scripts.php
+    Since: 0.0.1
+
+  PPW_Admin_Load_Styles
+    Enqueues external CSS files
+
+    Location: admin/classes/class-ppw-load-admin-styles.php
+    Since: 0.0.1
+
+  PPW_Comment_Editor:
+    Adds TinyMCE editor to the coment form
+
+    Filters: ppw_comment_editor_params
+    Location: includes/classes/class-ppw-comment-editor.php
+    Since: 0.0.1
+
+  PPW_Helper_Close_Comments:
+    Closes comments if they are open
+
+    Location: includes/classes/class-ppw-helper-close-comments.php
+    Since: 0.0.1
+
+  PPW_Helper_Enqueue_If_Registered:
+    Enqueue scripts if they are registered
+
+    Location: includes/classes/class-ppw-helper-enqueue-if-registered.php
+    Since: 0.0.1
+
+  PPW_Helper_Get_Active_Clients:
+    Get a list of all active client names and IDs
+
+    Location: includes/classes/class-ppw-helper-get-active-clients.php
+    Since: 0.0.1
+
+  PPW_Helper_Get_All_Clients:
+    Get a list of all the client names and IDs
+
+    Location: includes/classes/class-ppw-helper-get-all-clients.php
+    Since: 0.0.1
+
+  PPW_Helper_Get_Atrribute:
+    Displays the attribute if it has a value
+
+    Location: includes/classes/class-ppw-helper-get-attribute.php
+    Since: 0.0.1
+
+  PPW_Helper_Get_Employee_Users
+    Get a list of employee user ID and name
+
+    Location: includes/classes/class-ppw-helper-get-employee-users.php
+    Since: 0.0.1
+
+  PPW_Helper_Get_Plugin_Part:
+    Include template parts
+
+    Location: includes/classes/class-ppw-helper-get-plugin-part.php
+    Since: 0.0.1
+
+  PPW_Helper_Get_Product_Categories:
+    Get the categories of the project
+
+    Location: includes/classes/class-ppw-helper-get-project-categories.php
+    Since: 0.0.1
+
+  PPW_Helper_Get_Project_User_Avatar:
+    Display the user avatars assigned to the project
+
+    Location: includes/classes/class-ppw-helper-get-project-user-avatars.php
+    Since: 0.0.1
+
+  PPW_Helper_Get_Projects:
+    Get a list of the projects
+
+    Location: includes/classes/class-ppw-helper-get-projects.php
+    Since: 0.0.1
+
+  PPW_Helper_Register_Post_Type:
+    Registers custom post types
+
+    Location: includes/classes/class-ppw-helper-register-post-type.php
+    Since: 0.0.1
+
+  PPW_Helper_Register_Taxonomies:
+    Resgisters custom taxonomies
+
+    Location: includes/classes/class-ppw-helper-register-taxonomies.php
+    Since: 0.0.1
+
+  PPW_Load_Scripts:
+    Registers and Enqueues external JavaScript files, and sets up localized JavaScript
+
+    Location: includes/classes/class-ppw-load-scripts.php
+    Since: 0.0.1
+
+  PPW_Load_Styles:
+    Registers and Enqueues external CSS files
+
+    Location: includes/classes/class-ppw-load-styles.php
+    Since: 0.0.1
+
+  PPW_Pagination:
+    Creates a numbered pagination
+
+    Location: includes/classes/class-ppw-pagination.php
+    Since: 0.0.1
+
+  PPW_Project_AJAX_Search:
+    Runs the projects search through an AJAX callback loading results on the same page
+
+    Filters:  ppw_projects_group_title
+              ppw_projects_block
+              ppw_projects_block_title
+              ppw_projects_block_categories
+              ppw_projects_block_description
+              ppw_projects_block_avatars
+              ppw_projects_block_link
+
+    Location: includes/classes/class-ppw-project-ajax-search.php
+    Since: 0.0.1
+
+  PPW_Project_Autocomplete:
+    Adds autocomplete to the project search form
+
+    Location: includes/classes/class-ppw-project-auto-complete.php
+    Since: 0.0.1
+
+  PPW_Register_Post_Types:
+    Registers the custom post types
+
+    Location: includes/classes/class-ppw-register-post-types.php
+    Since: 0.0.1
+
+  PPW_Register_Taxonomies:
+    Registers the custom taxomonies
+
+    Location: includes/classes/class-ppw-register-taxonomies.php
+    Since: 0.0.1
+
+  PPW_Single_Templates:
+    Adds custom single page templates to the hierarchy
+
+    Location: includes/classes/class-ppw-single-templates.php
+    Since: 0.0.1
+
+Functions:
+  
+  ppw_close_comments:
+    Closes comments if open
+
+    Usage: ppw_close_comments( $id );
+    Location: includes/classes/class-ppw-helper-close-comments.php
+    Since: 0.0.1
+
+  ppw_enqueue_if_registered:
+    Enqueues scripts if they are registered
+
+    Usage: ppw_enqueue_if_registered( $script );
+    Location: includes/classes/class-ppw-helper-enqueue-if-registered.php
+    Since: 0.0.1
+
+  ppw_get_active_clients:
+    Get a list of all active client names and IDs
+
+    Usage: ppw_get_active_clients();
+    Location: includes/classes/class-ppw-helper-get-active-clients.php
+    Since: 0.0.1
+
+  ppw_get_all_clients:
+    Get a list of all the client names and IDs
+
+    Usage: ppw_get_all_clients();
+    Location: includes/classes/class-ppw-helper-get-all-clients.php
+    Since: 0.0.1
+
+  ppw_get_attribute:
+    Displays the attribute if it has a value
+
+    Usage: ppw_get_attribute( $attribute, $value );
+    Location: includes/classes/class-ppw-helper-get_attribute.php
+    Since: 0.0.1
+
+  ppw_get_employee_users:
+    Get the manager users ID and names
+
+    Usage: ppw_get_employee_users();
+    Location: includes/classes/class-ppw-helper-get-employee-users.php
+    Since: 0.0.1
+
+  ppw_get_plugin_part:
+    Includes plugin template parts
+
+    Usage: PPW_Helper_Get_Plugin_Part::init( $path, $filetype );
+    Location: includes/classes/class-ppw-helper-get_plugin_part.php
+    Since: 0.0.1
+
+  ppw_get_product_categories:
+    Get the categories for the products
+
+    Usage: ppw_get_product_categories( $id );
+    Location: includes/classes/class-ppw-helper-get_product-categories.php
+    Since: 0.0.1
+
+  ppw_get_project_user_avatar:
+    Display the user avatars assigned to the project
+
+    Usage: ppw_get_project_user_avatar( $project_clients, $project_assigned );
+    Location: includes/classes/class-ppw-helper-get-project-user-avatars.php
+    Since: 0.0.1
+
+  ppw_get_projects
+    Get a list of the projects
+
+    Usage: ppw_get_projects();
+    Location: includes/classes/class-ppw-helper-get-projects.php
+    Since: 0.0.1
+
+  ppw_pagination:
+    Add pagination to a post listing
+
+    Usage: ppw_pagination( $args = array() );
+    Location: includes/classes/class-ppw-pagination.php
+    Since: 0.0.1
+
+  ppw_register_post_types
+    Registers custom post types
+
+    Usage: ppw_register_post_types( $post_type, $singular, $plural, $labels = array(), $args = array() );
+    Location: includes/classes/class-ppw-helper-register-post-type.php
+    Since: 0.0.1
+
+  ppw_register_taxinomies:
+    Resgisters custom taxonomies
+
+    Usage: ppw_register_taxinomies( $post_type, $taxonomy, $singular, $plural,  $labels = array(), $args = array() );
+    Location: includes/classes/class-ppw-helper-register-taxonomies.php
+    Since: 0.0.1
+
+Filters:
+
+  ppw_wp_editor_params:
+    The wp_editor() parameters for the comment fields
+
+    Default:  array(
+                'textarea_rows' => 15,
+                'teeny'         => true,
+                'quicktags'     => false,
+                'media_buttons' => false,
+                'tinymce'       => array( 'directionality' => $rtl ),
+              ) 
+    Location: includes/classes/class-ppw-comment-editor.php
+    Since: 0.0.1
+
+  ppw_projects_group_title:
+    The classes for the projects groups
+
+    Default: 'ppw__Listing-group--title'
+    Location: includes/classes/class-ppw-project-ajax-search.php
+              includes/classes/template-ppw-project-block.php
+    Since: 0.0.1
+
+  ppw_projects_block:
+    The classes for the project block wrapper
+
+    Default: 'ppw__projects-block'
+    Location: includes/classes/class-ppw-project-ajax-search.php
+              includes/classes/template-ppw-project-block.php
+    Since: 0.0.1
+
+  ppw_projects_block_title:
+    The classes for the project block title
+
+    Default: 'ppw__project-block--title'
+    Location: includes/classes/class-ppw-project-ajax-search.php
+              includes/classes/template-ppw-project-block.php
+    Since: 0.0.1
+
+  ppw_projects_block_categories:
+    The classes for the project block categories listing
+
+    Default: 'ppw__projects-block--categories'
+    Location: includes/classes/class-ppw-project-ajax-search.php
+              includes/classes/template-ppw-project-block.php
+    Since: 0.0.1
+
+  ppw_projects_block_description:
+    The classes for the project block description
+
+    Default: 'ppw__projects-block--description'
+    Location: includes/classes/class-ppw-project-ajax-search.php
+              includes/classes/template-ppw-project-block.php
+    Since: 0.0.1
+
+  ppw_projects_block_avatars:
+    The classes for the project block avatars
+
+    Default: 'ppw__projects-block--avatars'
+    Location: includes/classes/class-ppw-project-ajax-search.php
+              includes/classes/template-ppw-project-block.php
+    Since: 0.0.1
+
+  ppw_projects_block_link:
+    The classes for the project block link
+
+    Default: 'ppw__projects-block--link'
+    Location: includes/classes/class-ppw-project-ajax-search.php
+              includes/classes/template-ppw-project-block.php
+    Since: 0.0.1

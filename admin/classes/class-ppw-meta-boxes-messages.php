@@ -43,7 +43,7 @@ if( !class_exists( 'PPW_Meta_Boxes_Messages' ) ) {
 			    'id'               => PPW_PREFIX . '_messages_project',
 			    'type'             => 'select',
 			    'show_option_none' => true,
-			    'options'          => PPW_Helper_Get_Projects::init(),
+			    'options'          => ppw_get_projects(),
 			    'attributes'       => array(
 			        'required' => 'required',
 			    ),

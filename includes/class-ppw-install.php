@@ -22,6 +22,7 @@ if( !class_exists( 'PPW_Install' ) ) {
 			$ppw_add_user_roles = new PPW_Add_Roles();
 			flush_rewrite_rules();
 			$this->add_options();
+			add_image_size( 70, 70, 'avatar');
 		} // end __construct
 
 		/**

@@ -43,12 +43,22 @@ if( !class_exists( 'Helpers' ) ) {
 			return $caps;
 		} // end post_type_capabilites
 
+		/**
+		 * Assert that two objects are equal. This helper method will sort the two objects before comparing them if
+		 * necessary. This only works for one-dimensional objects, if you need multi-dimension support, you will
+		 * have to iterate through the dimensions yourself.
+		 * 
+		 * @param array $expected the expected object
+		 * @param array $actual the actual object
+		 * @param bool $regard_order whether or not object elements may appear in any order, default is false
+		 * @param bool $check_keys whether or not to check the keys in an associative object
+		 */
 		protected function assertArrayObjEqual($expected, $actual, $regard_order = false, $check_keys = true) {
 			foreach( $actual as $key => $value ) {
 				$the_actual[$key] = $value;
 			}
 		    // check length first
-		    $this->assertEquals(count($expected), count($the_actual), 'Failed to assert that two arrays have the same length. actual: ' . count($the_actual) . '. expected: ' . count($expected));
+		    $this->assertEquals(count($expected), count($the_actual), 'Failed to assert that two objects have the same length. actual: ' . count($the_actual) . '. expected: ' . count($expected));
 
 		    // sort arrays if order is irrelevant
 		    if (!$regard_order) {
@@ -68,6 +78,7 @@ if( !class_exists( 'Helpers' ) ) {
 		 * Assert that two arrays are equal. This helper method will sort the two arrays before comparing them if
 		 * necessary. This only works for one-dimensional arrays, if you need multi-dimension support, you will
 		 * have to iterate through the dimensions yourself.
+		 * 
 		 * @param array $expected the expected array
 		 * @param array $actual the actual array
 		 * @param bool $regard_order whether or not array elements may appear in any order, default is false

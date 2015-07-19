@@ -85,6 +85,32 @@
   display: block;
 }
 
+.ppw__project-search input[type="search"] {
+  width: 100%;
+  border-radius: 0px;
+}
+
+.ppw__project_ac_results {
+  display: none;
+  border: 1px solid #ddd;
+}
+.ppw__project_ac_results ul {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+.ppw__project_ac_results a {
+  width: 100%;
+  display: block;
+  color: #333;
+  text-decoration: none;
+  padding: 0.25em 0.5em;
+  box-sizing: border-box;
+}
+.ppw__project_ac_results a:hover {
+  background-color: #ededed;
+}
+
 /*---------------------------------------------------------
  * Project Listing
 ---------------------------------------------------------*/
@@ -106,6 +132,11 @@
     display: none;
   }
 }
+.ppw__Listing-group--title {
+  display: block;
+  width: 50px;
+}
+
 .ppw__project-display--entry {
   position: relative;
 }
@@ -120,4 +151,9 @@
   height: 100%;
   top: 0px;
   left: 0px;
+}
+
+.ppw__project_search_results ul {
+  list-style-type: none;
+  padding: 0;
 }

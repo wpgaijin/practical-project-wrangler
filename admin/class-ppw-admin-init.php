@@ -21,6 +21,7 @@ if( !class_exists( 'PPW_Admin_Init' ) ) {
 			$this->custom_fields();
 			$this->custom_meta_boxes();
 			$this->plugin_options();
+			add_image_size( 70, 70, 'avatar');
 		} // end __construct
 
 		/**
@@ -64,6 +65,8 @@ if( !class_exists( 'PPW_Admin_Init' ) ) {
 			$ppw_projects_meta_boxes = new PPW_Meta_Boxes_Projects();
 			$ppw_tasks_meta_boxes = new PPW_Meta_Boxes_Tasks();
 			$ppw_messages_meta_boxes = new PPW_Meta_Boxes_Messages();
+			$ppw_users_meta_boxes = new PPW_Meta_Boxes_Users();
+			$ppw_metabox_clients = new PPW_Metabox_Clients();
 		} // end custom_meta_boxes
 
 		/**

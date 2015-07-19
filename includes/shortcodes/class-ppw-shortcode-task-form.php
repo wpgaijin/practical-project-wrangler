@@ -238,7 +238,10 @@ if( !class_exists( 'PPW_Shortcode_Task_Form' ) ) {
 		 * @return     mixed $output the shoutcode output
 		 */
 		public function shortcode( $atts = array() ) {
-			$this->check_for_shortcode();
+			// Close the comments
+			ppw_close_comments( $this->shortcode_id );
+			// Enqueue the comments off JavaScript
+			ppw_enqueue_if_registered( PPW_PREFIX . '-comments-off' );
 			// Get CMB2 metabox object
 			$cmb = cmb2_get_metabox( $this->form_id, $this->fake_id );
 			// Get $cmb object_types
@@ -251,10 +254,7 @@ if( !class_exists( 'PPW_Shortcode_Task_Form' ) ) {
 				'post_status' => 'publish',
 				'post_type'   => reset( $post_types ), // Only use first object_type in array
 			), $atts, $this->shortcode_id );
-			/*
-			 * Let's add these attributes as hidden fields to our cmb form
-			 * so that they will be passed through to our form submission
-			 */
+			// Add hidden attributes
 			foreach ( $atts as $key => $value ) {
 				$cmb->add_hidden_field( array(
 					'field_args'  => array(
@@ -276,31 +276,9 @@ if( !class_exists( 'PPW_Shortcode_Task_Form' ) ) {
 				'form_format' => '<form class="cmb-form" method="post" id="%1$s" enctype="multipart/form-data" encoding="multipart/form-data"><input type="hidden" name="object_id" value="%2$s">%3$s<input type="submit" name="' . $this->submit_name_attr . '" value="%4$s" class="button-primary"></form>',
 				'save_button' => __( 'Submit Post', PPW_TEXTDOMAIN )
 			);
-			$list = 'registered';
-			// enqueue script if registered
-			if( wp_script_is( PPW_PREFIX . '-hide-comments', $list ) ) {
-				// script that hides the comments area
-				wp_enqueue_script( PPW_PREFIX . '-hide-comments' );
-			}
+			// The outputed HTML
 			$output .= cmb2_get_metabox_form( $cmb, $this->fake_id, $form_args );
 			return $output;
 		} // end shortcode
-
-		/**
-		 * Check for shortcode
-		 *
-		 * Check if the shortcode in the page content
-		 *
-		 * @since      0.0.1
-		 * @return     [type] [description]
-		 */
-		public function check_for_shortcode() {
-			global $post;
-			$subject = get_the_content($post->ID);
-			if( has_shortcode( $subject, $this->shortcode_id ) ) {
-				$post->comment_status = 'closed';
-				$post->ping_status = 'closed';
-			}
-		} // end check_for_shortcode
 	}
 } // end PPW_Shortcode_Task_Form

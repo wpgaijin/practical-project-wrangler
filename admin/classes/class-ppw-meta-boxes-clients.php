@@ -16,8 +16,8 @@ if( !class_exists( 'PPW_Meta_Boxes_Clients' ) ) {
 		 * @since 0.0.1
 		 */
 		public function __construct() {
-			add_action( 'cmb2_init', array( $this, 'clients_general_meta_boxes' ) );
-			add_action( 'cmb2_init', array( $this, 'clients_billing_meta_boxes' ) );
+			//add_action( 'cmb2_init', array( $this, 'clients_general_meta_boxes' ) );
+			//add_action( 'cmb2_init', array( $this, 'clients_billing_meta_boxes' ) );
 			add_action( 'cmb2_init', array( $this, 'clients_primary_contact_meta_boxes' ) );
 			add_action( 'cmb2_init', array( $this, 'clients_additional_contacts_meta_boxes' ) );
 			add_action( 'cmb2_init', array( $this, 'clients_additional_information_meta_boxes' ) );
@@ -325,7 +325,6 @@ if( !class_exists( 'PPW_Meta_Boxes_Clients' ) ) {
 				'object_types' => array( 'ppw_clients' ),
 				'context'      => 'normal',
 				'priority'     => 'high',
-				'show_names'   => true,
 				'cmb_styles'   => false
 			) );
 
@@ -343,18 +342,21 @@ if( !class_exists( 'PPW_Meta_Boxes_Clients' ) ) {
 				'name'        => __( 'Conact Name', PPW_TEXTDOMAIN ),
 				'id'          => PPW_PREFIX . '_clients_additional_contacts_name',
 				'type'        => 'text',
+				//'default'     => ' ',
 				'row_classes' => 'ppw-third-field ppw-padding-right'
 			) );
 			$group_fields->add_group_field( $group_field_id, array(
 				'name'        => __( 'Phone Number', PPW_TEXTDOMAIN ),
 				'id'          => PPW_PREFIX . '_clients_additional_contacts_phone',
 				'type'        => 'text',
+				//'default'     => ' ',
 				'row_classes' => 'ppw-third-field ppw-padding-right'
 			) );
 			$group_fields->add_group_field( $group_field_id, array(
 				'name'        => __( 'Email Address', PPW_TEXTDOMAIN ),
 				'id'          => PPW_PREFIX . '_clients_additional_contacts_email',
 				'type'        => 'text_email',
+				//'default'     => ' ',
 				'row_classes' => 'ppw-third-field'
 			) );
 		} // end clients_additional_contacts_meta_boxes

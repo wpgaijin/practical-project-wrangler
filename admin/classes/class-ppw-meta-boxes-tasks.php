@@ -49,7 +49,7 @@ if( !class_exists( 'PPW_Meta_Boxes_Tasks' ) ) {
 		} // end tasks_details_meta_boxes
 
 		/**
-		 * Taske assign meta boxes
+		 * Task assign meta boxes
 		 *
 		 * @since      0.0.1
 		 * @return     void
@@ -69,12 +69,12 @@ if( !class_exists( 'PPW_Meta_Boxes_Tasks' ) ) {
 				'id'          => PPW_PREFIX . '_assigned',
 				'type'        => 'multiselect',
 				'row_classes' => 'select-default',
-				'options'     => PPW_Get_Manager_Users::init(),
+				'options'     => ppw_get_manager_users(),
 			) );
 		} // end tasks_assign_meta_boxes
 
 		/**
-		 * Taske projects meta boxes
+		 * Task projects meta boxes
 		 *
 		 * @since      0.0.1
 		 * @return     void
@@ -95,7 +95,7 @@ if( !class_exists( 'PPW_Meta_Boxes_Tasks' ) ) {
 			    'id'               => PPW_PREFIX . '_tasks_project',
 			    'type'             => 'select',
 			    'show_option_none' => true,
-			    'options'          => PPW_Helper_Get_Projects::init(),
+			    'options'          => ppw_get_projects(),
 			    'attributes'       => array(
 			        'required' => 'required',
 			    ),
@@ -103,7 +103,7 @@ if( !class_exists( 'PPW_Meta_Boxes_Tasks' ) ) {
 		} // end tasks_project_meta_boxes
 
 		/**
-		 * Taske todo meta boxes
+		 * Task todo meta boxes
 		 *
 		 * @since      0.0.1
 		 * @return     void

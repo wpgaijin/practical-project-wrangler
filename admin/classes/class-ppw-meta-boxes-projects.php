@@ -22,12 +22,42 @@ if( !class_exists( 'PPW_Meta_Boxes_Projects' ) ) {
 			add_action( 'cmb2_init', array( $this, 'projects_assign_meta_boxes' ) );
 			add_action( 'cmb2_init', array( $this, 'projects_description_meta_boxes' ) );
 			add_action( 'cmb2_init', array( $this, 'projects_files_meta_boxes' ) );
+			add_action( 'cmb2_init', array( $this, 'projects_status_meta_boxes' ) );
 			add_action( 'admin_menu', array( $this, 'remove_meta_boxes' ) );
 			add_action( 'post_submitbox_misc_actions', array( $this, 'move_author_meta_box' ) );
 		} // end __construct
 
 		/**
-		 * Taske assign meta boxes
+		 * Project Status meta boxes
+		 *
+		 * @since      0.0.1
+		 * @return     void
+		 */
+		public function projects_status_meta_boxes() {
+			$fields = new_cmb2_box( array(
+				'id'           => PPW_PREFIX . '_projects_status',
+				'title'        => __( 'Project Status', PPW_TEXTDOMAIN ),
+				'object_types' => array( 'ppw_projects' ),
+				'context'      => 'side',
+				'priority'     => 'default',
+				'show_names'   => true,
+				'cmb_styles'   => false
+			) );
+			$fields->add_field( array(
+				'name'        => 'Status',
+				'id'          => PPW_PREFIX . '_the_project_status',
+				'type'        => 'select',
+				'default'     => 'active',
+				'options'     => array(
+						'active'   => 'Active',
+						'closed'   => 'Closed',
+						'archived' => 'Archived'
+					)
+			) );
+		} // end projects_status_meta_boxes
+
+		/**
+		 * Project assign meta boxes
 		 *
 		 * @since      0.0.1
 		 * @return     void
@@ -47,7 +77,7 @@ if( !class_exists( 'PPW_Meta_Boxes_Projects' ) ) {
 				'id'          => PPW_PREFIX . '_assigned',
 				'type'        => 'multiselect',
 				'row_classes' => 'select-default',
-				'options'     => PPW_Get_Manager_Users::init(),
+				'options'     => ppw_get_manager_users(),
 			) );
 		} // end projects_assign_meta_boxes
 
@@ -73,7 +103,7 @@ if( !class_exists( 'PPW_Meta_Boxes_Projects' ) ) {
 				'type'             => 'search',
 				'show_option_none' => true,
 				'default'          => ' ',
-				'options'          => PPW_Helper_List_Clients::init(),
+				'options'          => ppw_get_active_clients(),
 				'attributes' => array(
 			        'required' => 'required',
 			    )

@@ -55,7 +55,9 @@ module.exports = function(grunt) {
 	        files: [
 	        	'includes/js/ppw-client-form.js',
                 'includes/js/ppw-comments-off.js',
-                'includes/js/ppw-comments-editor.js'
+                'includes/js/ppw-comments-editor.js',
+                'includes/js/ppw-password-meter.js',
+                'includes/js/ppw-project-search.js'
 	        ],
 			options: {
 				scripturl: true,
@@ -77,7 +79,9 @@ module.exports = function(grunt) {
 					src: [
 			        	'includes/js/ppw-client-form.js',
 		                'includes/js/ppw-comments-off.js',
-		                'includes/js/ppw-comments-editor.js'
+		                'includes/js/ppw-comments-editor.js',
+		                'includes/js/ppw-password-meter.js',
+		                'includes/js/ppw-project-search.js'
 	        		]
 				}
 			}
@@ -94,7 +98,9 @@ module.exports = function(grunt) {
                 files: {
                 	'includes/js/ppw-client-form.min.js': 'includes/js/ppw-client-form.js',
                     'includes/js/ppw-comments-off.min.js': 'includes/js/ppw-comments-off.js',
-                    'includes/js/ppw-comment-editor.min.js': 'includes/js/ppw-comment-editor.js'
+                    'includes/js/ppw-comment-editor.min.js': 'includes/js/ppw-comment-editor.js',
+                    'includes/js/ppw-password-meter.min.js': 'includes/js/ppw-password-meter.js',
+                    'includes/js/ppw-project-search.min.js': 'includes/js/ppw-project-search.js'
                 }
             }
         },
